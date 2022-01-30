@@ -1,0 +1,68 @@
+.toolbar {
+  $branding-color: #1877f2;
+  .toolbar-color {
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+  }
+  .left-set {
+    display: flex;
+    justify-content: space-between;
+    width: 22%;
+    .search-field {
+      border-radius: 8px;
+      border: 1px solid white;
+      background-color: #f0f2f5;
+      padding: 1em;
+    }
+  }
+  .middle-set {
+    display: flex;
+    justify-content: space-between;
+    width: 45%;
+    button {
+      width: 6em;
+      border-radius: 8px;
+      mat-icon {
+        font-size: 2em;
+      }
+    }
+    .router-link-button {
+      border-radius: 0;
+      border-bottom: 4px solid $branding-color;
+      mat-icon {
+        color: $branding-color;
+      }
+    }
+    button:hover {
+      background-color: #8080801f;
+    }
+  }
+  .right-set {
+    display: flex;
+    justify-content: space-between;
+    width: 20%;
+    button {
+      background-color: #8080801f;
+    }
+  }
+}
+
+.mid-sec {
+  display: flex;
+  flex-direction: row;
+  .side-left {
+    width: 20%;
+  }
+  .mid {
+    width: 60%;
+  }
+  .side-right {
+    width: 20%;
+  }
+  .mid,
+  .side-right {
+    display: flex;
+    justify-content: center;
+  }
+}

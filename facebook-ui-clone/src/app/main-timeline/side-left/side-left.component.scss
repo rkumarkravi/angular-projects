@@ -1,0 +1,15 @@
+.list-item-side{
+  display: flex;
+  width: 100%;
+  align-items: center;
+  cursor: pointer;
+  padding: 1em;
+  border-radius: 08px;
+  font-weight: bold;
+  span{
+    margin-left: 1em;
+  }
+}
+.list-item-side:hover{
+  background-color: #4949491f;
+}

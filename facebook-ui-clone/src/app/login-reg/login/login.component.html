@@ -1,0 +1,79 @@
+<div class="login">
+  <div class="login-inner">
+    <div class="login-left">
+      <div class="main-branding">{{ brandingName }}</div>
+      <div class="branding-info">
+        Facebook helps you connect and share with the people in your life.
+      </div>
+    </div>
+    <div class="login-form">
+      <mat-card class="login-form-inner">
+        <mat-form-field appearance="outline">
+          <mat-label>Email address or phone number</mat-label>
+          <input matInput placeholder="Email address or phone number" />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Password</mat-label>
+          <input matInput placeholder="Password" type="password" />
+        </mat-form-field>
+        <button mat-flat-button class="login-btn">Log In</button>
+        <a href="#" class="forgot-pass">Forgotten password?</a>
+        <button mat-flat-button class="create-acc-btn" (click)="openDialog()">
+          Create New Account
+        </button>
+      </mat-card>
+    </div>
+  </div>
+</div>
+<ng-template #signupdialog>
+  <h1 mat-dialog-title>Sign Up</h1>
+  <form class="signup">
+    <div class="el-flex">
+      <mat-form-field appearance="outline">
+        <mat-label>First Name</mat-label>
+        <input matInput placeholder="First Name" />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Last Name</mat-label>
+        <input matInput placeholder="Last Name" />
+      </mat-form-field>
+    </div>
+    <mat-form-field appearance="outline" class="el-s-full-width">
+      <mat-label>Email address or phone number</mat-label>
+      <input matInput placeholder="Email address or phone number" />
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="el-s-full-width">
+      <mat-label>New Password</mat-label>
+      <input matInput placeholder="New Password" type="password" />
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="el-s-full-width">
+      <mat-label>Date of Birth</mat-label>
+      <input matInput [matDatepicker]="picker" />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <br />
+    <mat-radio-group aria-label="Select your Gender" class="el-flex">
+      <mat-radio-button value="M">Male</mat-radio-button>
+      <mat-radio-button value="F">Female</mat-radio-button>
+    </mat-radio-group>
+    <br />
+    <p>
+      By clicking Sign Up, you agree to our Terms, Data Policy and Cookie
+      Policy. You may receive SMS notifications from us and can opt out at any
+      time.
+    </p>
+    <div class="el-flex">
+      <button mat-flat-button class="signup-btn">Sign Up</button>
+      <button
+        mat-flat-button
+        aria-label="cancel signup"
+        color="warn"
+        mat-dialog-close
+        class="close-btn"
+      >
+        Close
+      </button>
+    </div>
+  </form>
+</ng-template>

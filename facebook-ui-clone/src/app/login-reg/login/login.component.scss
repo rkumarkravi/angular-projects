@@ -1,0 +1,117 @@
+.login {
+  $screen-lg-min: 1200px;
+  $screen-md-max: $screen-lg-min - 1;
+  $screen-md-min: 992px;
+  $screen-sm-max: $screen-md-min - 1;
+  $screen-sm-min: 768px;
+  @mixin sm {
+    @media (max-width: #{$screen-sm-min}) {
+      @content;
+    }
+  }
+
+  // Medium devices
+  @mixin md {
+    @media (min-width: #{$screen-md-min}) {
+      @content;
+    }
+  }
+
+  // Large devices
+  @mixin lg {
+    @media (min-width: #{$screen-lg-min}) {
+      @content;
+    }
+  }
+
+  // Extra large devices
+  @mixin xl {
+    @media (min-width: #{$screen-xl-min}) {
+      @content;
+    }
+  }
+  height: 100vh;
+  $branding-color: #1877f2;
+  display: flex;
+
+  .login-inner {
+    display: flex;
+    margin: 10%;
+    justify-content: center;
+    gap: 11em;
+    @include sm {
+      flex-direction: column;
+    }
+    .login-left {
+      max-width: 530px;
+      .main-branding {
+        font-size: 4em;
+        font-weight: bolder;
+        padding-top: 2em;
+        color: $branding-color;
+      }
+      .branding-info {
+        padding-top: 1.5em;
+        font-size: 28px;
+        font-weight: normal;
+        line-height: 32px;
+        text-align: left;
+      }
+    }
+    .login-form {
+      .forgot-pass {
+        text-align: center;
+        margin: 1em;
+        text-decoration: none;
+        color: $branding-color;
+      }
+      .login-form-inner {
+        display: flex;
+        flex-direction: column;
+        width: 370px;
+      }
+      .login-btn,
+      .create-acc-btn {
+        background-color: $branding-color;
+        color: white;
+        font-size: 2em;
+        padding: 0.2em;
+      }
+      .create-acc-btn {
+        background-color: #42b72a;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+.signup {
+  .signup-btn {
+    color: white;
+    font-size: 2em;
+    padding: 0.2em;
+    background-color: #42b72a;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+  }
+  .close-btn{
+    font-size: 2em;
+    padding: 0.2em;
+  }
+  .el-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap:0.4em;
+    *:nth-child(1),
+    *:nth-child(2) {
+      width: 100%;
+    }
+  }
+  .el-s-full-width {
+    width: 100%;
+  }
+}

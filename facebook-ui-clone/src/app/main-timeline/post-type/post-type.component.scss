@@ -1,0 +1,33 @@
+.post-style {
+  width: 50em;
+  padding: 1em;
+  margin: 1em;
+  .user-avatar{
+    margin-right: 1em;
+  }
+  .user-name-and-date{
+    color: gray;
+  }
+  .user-name{
+    font-weight: bold;
+    font-size: 1.2em;
+  }
+  .post-date{
+    font-size: 0.8em;
+  }
+  .like-comment-style,.like-comment-style-count {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.1em;
+  }
+  .like-comment-style-count{
+    div:nth-child(1):after,div:nth-child(2):after{
+      content: '.';
+      color:black;
+      margin:0.1em;
+    }
+  }
+  .post-text{
+    padding: 1em 0em;
+  }
+}

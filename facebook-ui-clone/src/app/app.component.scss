@@ -1,0 +1,24 @@
+.foot {
+  $colortext: #8a8d91;
+  background-color: #fff;
+  .foot-inner-wrapper{
+    margin: 0 10%;
+  }
+  .langs,.products,.copyright {
+    padding: 1em 0;
+  }
+  .copyright{
+    color: $colortext;
+    padding-top: 0;
+  }
+  a{
+    color: $colortext;
+    text-decoration: none;
+  }
+  a:hover{
+    text-decoration: underline;
+  }
+  .add-btn{
+    font-weight: bolder;
+  }
+}

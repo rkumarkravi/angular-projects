@@ -1,0 +1,18 @@
+<router-outlet></router-outlet>
+<footer class="foot" *ngIf="footerSwitch">
+  <div class="foot-inner-wrapper">
+  <div class="langs">
+    <ng-container *ngFor="let item of langs">
+      <a href="#">{{item}}</a>&nbsp;
+    </ng-container>
+    <button class="add-btn">+</button>
+  </div>
+  <mat-divider></mat-divider>
+  <div class="products">
+    <ng-container *ngFor="let item of products">
+    <a href="#">{{item}}</a>&nbsp;
+    </ng-container>
+  </div>
+  <div class="copyright"> Meta © 2022</div>
+</div>
+</footer>

@@ -1,12 +1,12 @@
 .post-style {
-  width: 50em;
+  width: 100%;
   padding: 1em;
-  margin: 1em;
+  margin: 1em 0;
   .user-avatar{
     margin-right: 1em;
   }
   .user-name-and-date{
-    color: gray;
+    color: black;
   }
   .user-name{
     font-weight: bold;
@@ -14,6 +14,10 @@
   }
   .post-date{
     font-size: 0.8em;
+    color: gray;
+  }
+  .like-comment-style{
+    margin-top: 0.5em;
   }
   .like-comment-style,.like-comment-style-count {
     display: flex;
@@ -29,5 +33,13 @@
   }
   .post-text{
     padding: 1em 0em;
+  }
+  .post_image{
+    .post_image_config{
+      width: 100%;
+      aspect-ratio: 2/1;
+      background-size: cover;
+      background-position: center;
+    }
   }
 }

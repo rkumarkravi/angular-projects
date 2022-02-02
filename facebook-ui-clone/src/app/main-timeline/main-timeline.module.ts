@@ -8,6 +8,7 @@ import { SideLeftComponent } from './side-left/side-left.component';
 import { SideRightComponent } from './side-right/side-right.component';
 import { PostFeedComponent } from './post-feed/post-feed.component';
 import { PostTypeComponent } from './post-type/post-type.component';
+import { PostCreatorComponent } from './post-creator/post-creator.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { PostTypeComponent } from './post-type/post-type.component';
     SideLeftComponent,
     SideRightComponent,
     PostFeedComponent,
-    PostTypeComponent
+    PostTypeComponent,
+    PostCreatorComponent
   ],
   imports: [
     CommonModule,

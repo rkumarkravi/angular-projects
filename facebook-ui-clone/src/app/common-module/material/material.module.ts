@@ -12,6 +12,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import {MatIconModule} from '@angular/material/icon';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatListModule} from '@angular/material/list';
+import {MatMenuModule} from '@angular/material/menu';
 @NgModule({
   declarations: [],
   imports: [
@@ -27,7 +28,8 @@ import {MatListModule} from '@angular/material/list';
     MatNativeDateModule,
     MatIconModule,
     MatToolbarModule,
-    MatListModule
+    MatListModule,
+    MatMenuModule
   ],
   exports: [
     MatDividerModule,
@@ -41,7 +43,8 @@ import {MatListModule} from '@angular/material/list';
     MatNativeDateModule,
     MatIconModule,
     MatToolbarModule,
-    MatListModule
+    MatListModule,
+    MatMenuModule
   ],
 })
 export class MaterialModule {}

@@ -14,7 +14,7 @@ export class PostFeedComponent implements OnInit {
     this.feeds = [
       {
         postId: 0,
-        username: 'abc',
+        username: 'Ravi Kumar',
         createdDate: '28-01-2022',
         tags: ['abc','cde','fgh'],
         allowed: ALLOWEDFOR.ALL,
@@ -24,7 +24,7 @@ export class PostFeedComponent implements OnInit {
         comments: ['abc','cde','abc','cde','abc','cde'],
       },{
         postId: 0,
-        username: 'cde',
+        username: 'Prashant Kumar',
         createdDate: '22-01-2022',
         tags: ['abc','cde','fgh'],
         allowed: ALLOWEDFOR.ALL,
@@ -34,7 +34,7 @@ export class PostFeedComponent implements OnInit {
         comments: ['abc','cde','abc','cde','abc','cde'],
       },{
         postId: 0,
-        username: 'fgh',
+        username: 'Nisha Kumari',
         createdDate: '29-01-2022',
         tags: ['abc','cde','fgh'],
         allowed: ALLOWEDFOR.ALL,

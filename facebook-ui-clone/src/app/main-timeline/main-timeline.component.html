@@ -43,9 +43,12 @@
       <button mat-icon-button color="#000" aria-label="Example icon button with a menu icon">
         <mat-icon>notifications</mat-icon>
       </button>
-      <button mat-icon-button color="#000" aria-label="Example icon button with a menu icon">
+      <button mat-icon-button  [matMenuTriggerFor]="menu" color="#000" aria-label="Example icon button with a menu icon">
         <mat-icon>arrow_drop_down</mat-icon>
       </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>Sign Out</button>
+      </mat-menu>
     </div>
   </mat-toolbar>
 </div>

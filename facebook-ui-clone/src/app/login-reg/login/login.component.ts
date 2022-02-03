@@ -18,8 +18,12 @@ export class LoginComponent implements OnInit {
   }
 
   openDialog(){
+    let dialogHeight='35%';
+    if(window.innerWidth<800){
+      dialogHeight='80%';
+    }
     this.dialogReturn = this.dialog.open(this.userDialogTemplate,{
-      width: '35%',
+      width: dialogHeight,
       data: {name: "dfsdf"},
     });
   }

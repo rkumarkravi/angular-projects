@@ -1,4 +1,36 @@
+$screen-lg-min: 1200px;
+  $screen-md-max: $screen-lg-min - 1;
+  $screen-md-min: 992px;
+  $screen-sm-max: $screen-md-min - 1;
+  $screen-sm-min: 768px;
+  @mixin sm {
+    @media (max-width: #{$screen-sm-min}) {
+      @content;
+    }
+  }
+
+  // Medium devices
+  @mixin md {
+    @media (min-width: #{$screen-md-min}) {
+      @content;
+    }
+  }
+
+  // Large devices
+  @mixin lg {
+    @media (min-width: #{$screen-lg-min}) {
+      @content;
+    }
+  }
+
+  // Extra large devices
+  @mixin xl {
+    @media (min-width: #{$screen-xl-min}) {
+      @content;
+    }
+  }
 .toolbar {
+
   $branding-color: #1877f2;
   .toolbar-color {
     display: flex;
@@ -9,6 +41,9 @@
     display: flex;
     max-width: 25%;
     align-items: center;
+    @include sm{
+      display: none;
+    }
     .search-field-wrapper{
         display: flex;
         align-items: center;
@@ -30,6 +65,7 @@
     button {
       width: 6em;
       border-radius: 8px;
+      margin:0.2em;
       mat-icon {
         font-size: 2em;
       }
@@ -51,6 +87,9 @@
     justify-content: space-between;
     align-items: center;
     max-width: 25%;
+    @include sm{
+      display: none;
+    }
     .profile{
       background-color: #f1f2f5;
       padding: 0.2em;
@@ -73,18 +112,28 @@
 .mid-sec {
   display: flex;
   flex-direction: row;
+
   .side-left {
     width: 20%;
+    @include sm{
+      display: none;
+    }
   }
   .mid {
     width: 60%;
+    display: flex;
+    justify-content: center;
+    @include sm{
+      width: 80%;
+      justify-content: inherit;
+    }
   }
   .side-right {
     width: 20%;
-  }
-  .mid,
-  .side-right {
     display: flex;
     justify-content: center;
+    @include sm{
+      display: none;
+    }
   }
 }

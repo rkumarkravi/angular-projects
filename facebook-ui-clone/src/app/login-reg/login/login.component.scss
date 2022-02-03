@@ -44,6 +44,9 @@
     }
     .login-left {
       max-width: 530px;
+      @include sm{
+        margin-top: -10em;
+      }
       .main-branding {
         font-size: 4em;
         font-weight: bolder;
@@ -69,6 +72,10 @@
         display: flex;
         flex-direction: column;
         width: 370px;
+        @include sm {
+          width: 100%;
+          margin-left: -1em;
+        }
       }
       .login-btn,
       .create-acc-btn {

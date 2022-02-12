@@ -2,13 +2,15 @@ import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CommonServService {
-  showFooter:Subject<boolean>=new Subject();
-  constructor() { }
+  showFooter: Subject<boolean> = new Subject();
+  loginned: boolean = false;
+  loginUser: string = '';
+  constructor() {}
 
-  setFooter(val:boolean){
+  setFooter(val: boolean) {
     this.showFooter.next(val);
   }
 }

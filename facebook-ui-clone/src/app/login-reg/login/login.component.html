@@ -7,21 +7,36 @@
       </div>
     </div>
     <div class="login-form">
-      <mat-card class="login-form-inner">
-        <mat-form-field appearance="outline">
-          <mat-label>Email address or phone number</mat-label>
-          <input matInput placeholder="Email address or phone number" />
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>Password</mat-label>
-          <input matInput placeholder="Password" type="password" />
-        </mat-form-field>
-        <button mat-flat-button class="login-btn">Log In</button>
-        <a href="#" class="forgot-pass">Forgotten password?</a>
-        <button mat-flat-button class="create-acc-btn" (click)="openDialog()">
-          Create New Account
-        </button>
-      </mat-card>
+      <form (ngSubmit)="login(loginForm)" [formGroup]="loginForm">
+        <mat-card class="login-form-inner">
+          <mat-form-field appearance="outline">
+            <mat-label>Email address or phone number</mat-label>
+            <input
+              matInput
+              placeholder="Email address or phone number"
+              formControlName="emailId"
+            />
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input
+              matInput
+              placeholder="Password"
+              type="password"
+              formControlName="password"
+            />
+          </mat-form-field>
+          <button mat-flat-button class="login-btn" type="submit">
+            Log In
+          </button>
+          <div class="forgot-pass" (click)="forgotPass()">
+            Forgotten password?
+          </div>
+          <button mat-flat-button class="create-acc-btn" (click)="openDialog()">
+            Create New Account
+          </button>
+        </mat-card>
+      </form>
     </div>
   </div>
 </div>

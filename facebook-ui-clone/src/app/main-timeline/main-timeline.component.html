@@ -8,19 +8,41 @@
       </div>
     </div>
     <div class="middle-set">
-      <button mat-icon-button color="#65676b" aria-label="Example icon button with a menu icon" routerLink="" routerLinkActive="router-link-button">
+      <button
+        mat-icon-button
+        color="#65676b"
+        aria-label="Example icon button with a menu icon"
+        routerLink=""
+        routerLinkActive="router-link-button"
+      >
         <mat-icon>home</mat-icon>
       </button>
-      <button mat-icon-button color="#65676b" aria-label="Example icon button with a menu icon">
+      <button
+        mat-icon-button
+        color="#65676b"
+        aria-label="Example icon button with a menu icon"
+      >
         <mat-icon>people</mat-icon>
       </button>
-      <button mat-icon-button color="#65676b" aria-label="Example icon button with a menu icon">
+      <button
+        mat-icon-button
+        color="#65676b"
+        aria-label="Example icon button with a menu icon"
+      >
         <mat-icon>ondemand_video</mat-icon>
       </button>
-      <button mat-icon-button color="#65676b" aria-label="Example icon button with a menu icon">
+      <button
+        mat-icon-button
+        color="#65676b"
+        aria-label="Example icon button with a menu icon"
+      >
         <mat-icon>storefront</mat-icon>
       </button>
-      <button mat-icon-button color="#65676b" aria-label="Example icon button with a menu icon">
+      <button
+        mat-icon-button
+        color="#65676b"
+        aria-label="Example icon button with a menu icon"
+      >
         <mat-icon>groups</mat-icon>
       </button>
     </div>
@@ -28,32 +50,53 @@
     <div class="right-set">
       <div class="profile">
         <div>
-          <button mat-icon-button color="#000" aria-label="Example icon button with a menu icon">
+          <button
+            mat-icon-button
+            color="#000"
+            aria-label="Example icon button with a menu icon"
+          >
             <mat-icon>account_circle</mat-icon>
           </button>
           <div class="username">Ravi Kumar</div>
         </div>
       </div>
-      <button mat-icon-button color="#000" aria-label="Example icon button with a menu icon">
+      <button
+        mat-icon-button
+        color="#000"
+        aria-label="Example icon button with a menu icon"
+      >
         <mat-icon>apps</mat-icon>
       </button>
-      <button mat-icon-button color="#000" aria-label="Example icon button with a menu icon">
+      <button
+        mat-icon-button
+        color="#000"
+        aria-label="Example icon button with a menu icon"
+      >
         <mat-icon>chat</mat-icon>
       </button>
-      <button mat-icon-button color="#000" aria-label="Example icon button with a menu icon">
+      <button
+        mat-icon-button
+        color="#000"
+        aria-label="Example icon button with a menu icon"
+      >
         <mat-icon>notifications</mat-icon>
       </button>
-      <button mat-icon-button  [matMenuTriggerFor]="menu" color="#000" aria-label="Example icon button with a menu icon">
+      <button
+        mat-icon-button
+        [matMenuTriggerFor]="menu"
+        color="#000"
+        aria-label="Example icon button with a menu icon"
+      >
         <mat-icon>arrow_drop_down</mat-icon>
       </button>
       <mat-menu #menu="matMenu">
-        <button mat-menu-item>Sign Out</button>
+        <button mat-menu-item (click)="signOut()">Sign Out</button>
       </mat-menu>
     </div>
   </mat-toolbar>
 </div>
 <div class="mid-sec">
-<div class="side-left"><app-side-left></app-side-left></div>
-<div class="mid"><app-post-feed></app-post-feed></div>
-<div class="side-right"><app-side-right></app-side-right></div>
+  <div class="side-left"><app-side-left></app-side-left></div>
+  <div class="mid"><app-post-feed></app-post-feed></div>
+  <div class="side-right"><app-side-right></app-side-right></div>
 </div>

@@ -17,6 +17,7 @@ export class MainTimelineComponent implements OnInit, AfterViewChecked {
 
   ngOnInit(): void {}
   signOut() {
+    this.commonServ.setJwt('');
     this.commonServ.loginUser = '';
     this.commonServ.loginned = false;
     this.router.navigateByUrl('');

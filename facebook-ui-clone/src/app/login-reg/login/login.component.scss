@@ -1,3 +1,4 @@
+$branding-color: #1877f2;
 .login {
   $screen-lg-min: 1200px;
   $screen-md-max: $screen-lg-min - 1;
@@ -31,7 +32,6 @@
     }
   }
   height: 100%;
-  $branding-color: #1877f2;
 
   .login-inner {
     display: flex;
@@ -97,7 +97,6 @@
 .signup,
 .resetPass {
   .signup-btn {
-    color: white;
     font-size: 2em;
     padding: 0.2em;
     margin-left: auto;
@@ -120,5 +119,15 @@
   }
   .el-s-full-width {
     width: 100%;
+  }
+  .resend-otp {
+    background-color: $branding-color;
+    font-weight: bolder;
+    padding: 0.5em;
+    color: white;
+    margin-bottom: 0.5em;
+    letter-spacing: 0.2em;
+    border-radius: 10px;
+    cursor: pointer;
   }
 }

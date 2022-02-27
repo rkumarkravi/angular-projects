@@ -23,16 +23,18 @@
               matInput
               placeholder="Password"
               type="password"
+              #passwordElement
               formControlName="password"
             />
           </mat-form-field>
           <button mat-flat-button class="login-btn" type="submit">
             Log In
           </button>
-          <div class="forgot-pass" (click)="resetPasswordDialogOpen()">
+          <div class="forgot-pass" (click)="otpValidateDialogOpen()">
             Forgotten password?
           </div>
           <button
+            type="button"
             mat-flat-button
             class="create-acc-btn"
             (click)="registerDialogOpen()"
@@ -96,10 +98,60 @@
       time.
     </p>
     <div class="el-flex">
-      <button mat-flat-button class="signup-btn" type="submit">Sign Up</button>
+      <button mat-flat-button class="signup-btn" color="primary" type="submit">
+        Sign Up
+      </button>
       <button
         mat-flat-button
         aria-label="cancel signup"
+        color="warn"
+        mat-dialog-close
+        class="close-btn"
+      >
+        Close
+      </button>
+    </div>
+  </form>
+</ng-template>
+
+<ng-template #otpValidateDialog>
+  <h1 mat-dialog-title>User Validate | Reset Password</h1>
+  <form
+    class="resetPass"
+    (ngSubmit)="otpValidate(otpValidateForm)"
+    [formGroup]="otpValidateForm"
+  >
+    <mat-form-field appearance="outline" class="el-s-full-width">
+      <mat-label>Email address or phone number</mat-label>
+      <input matInput placeholder="Email address" formControlName="email" />
+    </mat-form-field>
+    <div *ngIf="otpValidateForm.get('email')?.disabled" style="margin: 0.5em">
+      <span *ngIf="resetTime < 59">Send OTP again in {{ resetTime }}s</span>
+      <span *ngIf="resetTime == 60" (click)="sendOTPAgain()" class="resend-otp"
+        >Resend OTP !</span
+      >
+    </div>
+    <mat-form-field
+      *ngIf="otpValidateForm.get('email')?.disabled"
+      appearance="outline"
+      class="el-s-full-width"
+    >
+      <mat-label>Enter OTP</mat-label>
+      <input matInput placeholder="OTP" formControlName="otp" />
+    </mat-form-field>
+    <div class="el-flex">
+      <button
+        mat-flat-button
+        class="signup-btn"
+        color="primary"
+        type="submit"
+        [disabled]="enableDisableSubmitReset"
+      >
+        Submit
+      </button>
+      <button
+        mat-flat-button
+        aria-label="close resetpassword"
         color="warn"
         mat-dialog-close
         class="close-btn"
@@ -114,24 +166,35 @@
   <h1 mat-dialog-title>Reset Password</h1>
   <form
     class="resetPass"
-    (ngSubmit)="resetPassword(resetForm)"
-    [formGroup]="resetForm"
+    (ngSubmit)="resetUserPassword(resetPasswordForm)"
+    [formGroup]="resetPasswordForm"
   >
     <mat-form-field appearance="outline" class="el-s-full-width">
-      <mat-label>Email address or phone number</mat-label>
-      <input matInput placeholder="Email address" formControlName="email" />
+      <mat-label>New Password</mat-label>
+      <input
+        matInput
+        placeholder="New Password"
+        formControlName="newPassword"
+      />
     </mat-form-field>
-    <div *ngIf="resetForm.get('email')?.disabled" style="margin: 0.5em">
-      <span *ngIf="resetTime < 59">Send OTP again in {{ resetTime }}s</span>
-      <span *ngIf="resetTime == 59" (click)="sendOTPAgain()">Resend OTP !</span>
-    </div>
+    <mat-form-field appearance="outline" class="el-s-full-width">
+      <mat-label>Confirm New Password</mat-label>
+      <input
+        matInput
+        placeholder="Confirm New Password"
+        formControlName="confirmNewPassword"
+      />
+    </mat-form-field>
     <div class="el-flex">
       <button
         mat-flat-button
         class="signup-btn"
         color="primary"
         type="submit"
-        [disabled]="resetForm.get('email')?.disabled"
+        [disabled]="
+          resetPasswordForm.get('newPassword')?.value !=
+          resetPasswordForm.get('confirmNewPassword')?.value
+        "
       >
         Submit
       </button>

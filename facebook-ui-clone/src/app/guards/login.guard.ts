@@ -22,6 +22,7 @@ export class LoginGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    return this.cService.loginned;
+    if (this.cService.getJwt().length == 0) this.router.navigateByUrl('');
+    return this.cService.getJwt().length > 0;
   }
 }

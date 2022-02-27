@@ -22,6 +22,6 @@ export class AlreadyLoginGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    return !this.cService.loginned;
+    return this.cService.getJwt().length == 0;
   }
 }

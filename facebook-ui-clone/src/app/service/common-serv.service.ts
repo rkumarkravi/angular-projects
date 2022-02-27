@@ -8,9 +8,18 @@ export class CommonServService {
   showFooter: Subject<boolean> = new Subject();
   loginned: boolean = false;
   loginUser: string = '';
+  private jwtToken: string = '';
   constructor() {}
 
   setFooter(val: boolean) {
     this.showFooter.next(val);
+  }
+
+  setJwt(token: string) {
+    this.jwtToken = token;
+  }
+
+  getJwt() {
+    return this.jwtToken;
   }
 }

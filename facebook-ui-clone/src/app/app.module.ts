@@ -7,6 +7,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './common-module/material/material.module';
 import { CommonServService } from './service/common-serv.service';
 import { ErrorPageComponent } from './error-page/error-page.component';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpIntercept } from './interceptors/http-intercept';
 @NgModule({
   declarations: [AppComponent, ErrorPageComponent],
   imports: [
@@ -14,8 +16,16 @@ import { ErrorPageComponent } from './error-page/error-page.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
+    HttpClientModule,
   ],
-  providers: [CommonServService],
+  providers: [
+    CommonServService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpIntercept,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

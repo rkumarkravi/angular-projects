@@ -29,10 +29,14 @@
           <button mat-flat-button class="login-btn" type="submit">
             Log In
           </button>
-          <div class="forgot-pass" (click)="forgotPass()">
+          <div class="forgot-pass" (click)="resetPasswordDialogOpen()">
             Forgotten password?
           </div>
-          <button mat-flat-button class="create-acc-btn" (click)="openDialog()">
+          <button
+            mat-flat-button
+            class="create-acc-btn"
+            (click)="registerDialogOpen()"
+          >
             Create New Account
           </button>
         </mat-card>
@@ -42,35 +46,48 @@
 </div>
 <ng-template #signupdialog>
   <h1 mat-dialog-title>Sign Up</h1>
-  <form class="signup">
+  <form
+    class="signup"
+    (ngSubmit)="register(registerForm)"
+    [formGroup]="registerForm"
+  >
     <div class="el-flex">
       <mat-form-field appearance="outline">
         <mat-label>First Name</mat-label>
-        <input matInput placeholder="First Name" />
+        <input matInput placeholder="First Name" formControlName="firstName" />
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Last Name</mat-label>
-        <input matInput placeholder="Last Name" />
+        <input matInput placeholder="Last Name" formControlName="lastName" />
       </mat-form-field>
     </div>
     <mat-form-field appearance="outline" class="el-s-full-width">
       <mat-label>Email address or phone number</mat-label>
-      <input matInput placeholder="Email address or phone number" />
+      <input matInput placeholder="Email address" formControlName="email" />
     </mat-form-field>
     <mat-form-field appearance="outline" class="el-s-full-width">
       <mat-label>New Password</mat-label>
-      <input matInput placeholder="New Password" type="password" />
+      <input
+        matInput
+        placeholder="New Password"
+        type="password"
+        formControlName="password"
+      />
     </mat-form-field>
     <mat-form-field appearance="outline" class="el-s-full-width">
       <mat-label>Date of Birth</mat-label>
-      <input matInput [matDatepicker]="picker" />
+      <input matInput [matDatepicker]="picker" formControlName="dob" />
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
     <br />
-    <mat-radio-group aria-label="Select your Gender" class="el-flex">
-      <mat-radio-button value="M">Male</mat-radio-button>
-      <mat-radio-button value="F">Female</mat-radio-button>
+    <mat-radio-group
+      aria-label="Select your Gender"
+      class="el-flex"
+      formControlName="gender"
+    >
+      <mat-radio-button value="MALE">Male</mat-radio-button>
+      <mat-radio-button value="FEMALE">Female</mat-radio-button>
     </mat-radio-group>
     <br />
     <p>
@@ -79,10 +96,48 @@
       time.
     </p>
     <div class="el-flex">
-      <button mat-flat-button class="signup-btn">Sign Up</button>
+      <button mat-flat-button class="signup-btn" type="submit">Sign Up</button>
       <button
         mat-flat-button
         aria-label="cancel signup"
+        color="warn"
+        mat-dialog-close
+        class="close-btn"
+      >
+        Close
+      </button>
+    </div>
+  </form>
+</ng-template>
+
+<ng-template #resetPasswordDialog>
+  <h1 mat-dialog-title>Reset Password</h1>
+  <form
+    class="resetPass"
+    (ngSubmit)="resetPassword(resetForm)"
+    [formGroup]="resetForm"
+  >
+    <mat-form-field appearance="outline" class="el-s-full-width">
+      <mat-label>Email address or phone number</mat-label>
+      <input matInput placeholder="Email address" formControlName="email" />
+    </mat-form-field>
+    <div *ngIf="resetForm.get('email')?.disabled" style="margin: 0.5em">
+      <span *ngIf="resetTime < 59">Send OTP again in {{ resetTime }}s</span>
+      <span *ngIf="resetTime == 59" (click)="sendOTPAgain()">Resend OTP !</span>
+    </div>
+    <div class="el-flex">
+      <button
+        mat-flat-button
+        class="signup-btn"
+        color="primary"
+        type="submit"
+        [disabled]="resetForm.get('email')?.disabled"
+      >
+        Submit
+      </button>
+      <button
+        mat-flat-button
+        aria-label="close resetpassword"
         color="warn"
         mat-dialog-close
         class="close-btn"

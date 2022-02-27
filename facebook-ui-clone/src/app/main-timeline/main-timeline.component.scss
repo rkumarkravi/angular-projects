@@ -1,36 +1,38 @@
 $screen-lg-min: 1200px;
-  $screen-md-max: $screen-lg-min - 1;
-  $screen-md-min: 992px;
-  $screen-sm-max: $screen-md-min - 1;
-  $screen-sm-min: 768px;
-  @mixin sm {
-    @media (max-width: #{$screen-sm-min}) {
-      @content;
-    }
+$screen-md-max: $screen-lg-min - 1;
+$screen-md-min: 992px;
+$screen-sm-max: $screen-md-min - 1;
+$screen-sm-min: 768px;
+@mixin sm {
+  @media (max-width: #{$screen-sm-min}) {
+    @content;
   }
+}
 
-  // Medium devices
-  @mixin md {
-    @media (min-width: #{$screen-md-min}) {
-      @content;
-    }
+// Medium devices
+@mixin md {
+  @media (min-width: #{$screen-md-min}) {
+    @content;
   }
+}
 
-  // Large devices
-  @mixin lg {
-    @media (min-width: #{$screen-lg-min}) {
-      @content;
-    }
+// Large devices
+@mixin lg {
+  @media (min-width: #{$screen-lg-min}) {
+    @content;
   }
+}
 
-  // Extra large devices
-  @mixin xl {
-    @media (min-width: #{$screen-xl-min}) {
-      @content;
-    }
+// Extra large devices
+@mixin xl {
+  @media (min-width: #{$screen-xl-min}) {
+    @content;
   }
+}
 .toolbar {
-
+  @include sm {
+    width: 100%;
+  }
   $branding-color: #1877f2;
   .toolbar-color {
     display: flex;
@@ -41,16 +43,16 @@ $screen-lg-min: 1200px;
     display: flex;
     max-width: 25%;
     align-items: center;
-    @include sm{
+    @include sm {
       display: none;
     }
-    .search-field-wrapper{
-        display: flex;
-        align-items: center;
-        background-color: #f0f2f5;
-        border-radius: 20px;
-        padding: 0.5em;
-        margin-left: 1em;
+    .search-field-wrapper {
+      display: flex;
+      align-items: center;
+      background-color: #f0f2f5;
+      border-radius: 20px;
+      padding: 0.5em;
+      margin-left: 1em;
       .search-field {
         outline-style: none;
         border: none;
@@ -65,7 +67,7 @@ $screen-lg-min: 1200px;
     button {
       width: 6em;
       border-radius: 8px;
-      margin:0.2em;
+      margin: 0.2em;
       mat-icon {
         font-size: 2em;
       }
@@ -87,16 +89,16 @@ $screen-lg-min: 1200px;
     justify-content: space-between;
     align-items: center;
     max-width: 25%;
-    @include sm{
+    @include sm {
       display: none;
     }
-    .profile{
+    .profile {
       background-color: #f1f2f5;
       padding: 0.2em;
       padding-right: 0.5em;
       border-radius: 20px;
       margin: 0.1em;
-      div{
+      div {
         display: flex;
         align-items: center;
         font-size: 0.8em;
@@ -115,7 +117,7 @@ $screen-lg-min: 1200px;
 
   .side-left {
     width: 20%;
-    @include sm{
+    @include sm {
       display: none;
     }
   }
@@ -123,7 +125,7 @@ $screen-lg-min: 1200px;
     width: 60%;
     display: flex;
     justify-content: center;
-    @include sm{
+    @include sm {
       width: 80%;
       justify-content: inherit;
     }
@@ -132,7 +134,7 @@ $screen-lg-min: 1200px;
     width: 20%;
     display: flex;
     justify-content: center;
-    @include sm{
+    @include sm {
       display: none;
     }
   }

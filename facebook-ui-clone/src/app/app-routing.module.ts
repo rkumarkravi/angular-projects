@@ -7,6 +7,11 @@ import { LoginGuard } from './guards/login.guard';
 const routes: Routes = [
   {
     path: '',
+    pathMatch: 'full',
+    redirectTo: 'login',
+  },
+  {
+    path: 'login',
     loadChildren: () =>
       import('./login-reg/access.module').then((m) => m.AccessModule),
     canActivate: [AlreadyLoginGuard],

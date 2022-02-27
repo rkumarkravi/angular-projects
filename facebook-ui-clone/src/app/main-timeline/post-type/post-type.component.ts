@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ALLOWEDFOR, Post } from '../models/posts-models';
+import { ALLOWEDFOR, Post } from '../models/models';
 
 @Component({
   selector: 'app-post-type',
@@ -10,6 +10,5 @@ export class PostTypeComponent implements OnInit {
   @Input('postInfo')
   postInfo!: Post;
   constructor() {}
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 }

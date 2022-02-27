@@ -1,21 +1,25 @@
 <div class="messageSender">
   <div class="messageSender__form">
-      <mat-icon>account_circle</mat-icon>
-      <form>
-      <input type="text" placeholder="What's in your Mind, ?" class='meaasgeSender__form_input1'/>
-      <input type="text"  placeholder="Image url/Optional"/>
-      <button type="submit" onClick={handleSubmit}>Hidden Submit</button>
-      </form>
+    <mat-icon>account_circle</mat-icon>
+    <form>
+      <input
+        type="text"
+        placeholder="What's in your Mind, {{ userData?.firstName }}?"
+        class="meaasgeSender__form_input1"
+      />
+      <input type="text" placeholder="Image url/Optional" />
+      <button type="submit" onClick="{handleSubmit}">Hidden Submit</button>
+    </form>
   </div>
   <div class="messageSender__buttons">
-      <div class="messageSender__button">
-        <mat-icon>videocam</mat-icon><span>Live Video</span>
-      </div>
-      <div class="messageSender__button">
-        <mat-icon>collections</mat-icon><span>Photo/Video</span>
-      </div>
-      <div class="messageSender__button">
-        <mat-icon>sentiment_satisfied_alt</mat-icon><span>Feeling/Activity</span>
-      </div>
+    <div class="messageSender__button">
+      <mat-icon>videocam</mat-icon><span>Live Video</span>
+    </div>
+    <div class="messageSender__button">
+      <mat-icon>collections</mat-icon><span>Photo/Video</span>
+    </div>
+    <div class="messageSender__button">
+      <mat-icon>sentiment_satisfied_alt</mat-icon><span>Feeling/Activity</span>
+    </div>
   </div>
 </div>

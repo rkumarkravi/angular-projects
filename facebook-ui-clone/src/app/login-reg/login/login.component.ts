@@ -109,8 +109,10 @@ export class LoginComponent implements OnInit {
       (res: any) => {
         console.log(res);
         this.commonServ.setJwt(res.jwtToken);
-        if (this.commonServ.getJwt != null)
+        if (this.commonServ.getJwt != null){
+          this.commonServ.userData=res.userInfo;
           this.router.navigateByUrl('/main-timeline');
+        }
       },
       (error) => {
         console.log(error);

@@ -57,7 +57,7 @@
           >
             <mat-icon>account_circle</mat-icon>
           </button>
-          <div class="username">Ravi Kumar</div>
+          <div class="username">{{ userData?.firstName }}</div>
         </div>
       </div>
       <button
@@ -96,7 +96,9 @@
   </mat-toolbar>
 </div>
 <div class="mid-sec">
-  <div class="side-left"><app-side-left></app-side-left></div>
+  <div class="side-left">
+    <app-side-left [userData]="userData"></app-side-left>
+  </div>
   <div class="mid"><app-post-feed></app-post-feed></div>
   <div class="side-right"><app-side-right></app-side-right></div>
 </div>

@@ -5,4 +5,5 @@ export const urlConsts: any = {
   resetPasswordUserValidateUrl: 'authenticate/resetPwdUserValidate',
   otpValidate: 'authenticate/otpvalidate',
   resetPassword: 'authenticate/resetPassword',
+  logoutUrl: 'authenticate/logout/',
 };

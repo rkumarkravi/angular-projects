@@ -1,5 +1,7 @@
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
+import { urlConsts } from '../consts/url-consts';
 import { User } from '../main-timeline/models/models';
 
 @Injectable({
@@ -11,7 +13,7 @@ export class CommonServService {
   loginUser: string = '';
   private jwtToken: string = '';
   userData: User | undefined;
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
   setFooter(val: boolean) {
     this.showFooter.next(val);
@@ -19,9 +21,33 @@ export class CommonServService {
 
   setJwt(token: string) {
     this.jwtToken = token;
+    if (token == '') {
+      sessionStorage.clear();
+    } else {
+      sessionStorage.setItem('t', token);
+    }
   }
 
   getJwt() {
-    return this.jwtToken;
+    if (this.jwtToken) {
+      return this.jwtToken;
+    } else {
+      let t = sessionStorage.getItem('t');
+      return t ? t : '';
+    }
+  }
+
+  checkActiveOrNot(): Observable<Object> {
+    let active: boolean = false;
+    const headers = new HttpHeaders().append(
+      'Content-Type',
+      'application/json'
+    );
+    const params = new HttpParams().append('t', this.getJwt());
+    return this.http.post(
+      urlConsts.baseUrl + urlConsts.activeOrNot,
+      {},
+      { headers: headers, params: params }
+    );
   }
 }

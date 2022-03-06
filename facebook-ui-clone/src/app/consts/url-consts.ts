@@ -6,4 +6,5 @@ export const urlConsts: any = {
   otpValidate: 'authenticate/otpvalidate',
   resetPassword: 'authenticate/resetPassword',
   logoutUrl: 'authenticate/logout/',
+  activeOrNot: 'authenticate/validate',
 };

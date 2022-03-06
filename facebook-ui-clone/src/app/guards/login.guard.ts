@@ -6,14 +6,14 @@ import {
   RouterStateSnapshot,
   UrlTree,
 } from '@angular/router';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { CommonServService } from './../service/common-serv.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LoginGuard implements CanActivate {
-  constructor(private cService: CommonServService, private router: Router) {}
+  constructor(private commonServ: CommonServService, private router: Router) {}
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
@@ -22,7 +22,17 @@ export class LoginGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    if (this.cService.getJwt().length == 0) this.router.navigateByUrl('');
-    return this.cService.getJwt().length > 0;
+    if (this.commonServ.getJwt() == '') {
+      this.router.navigateByUrl('/login');
+    }
+    return this.commonServ.checkActiveOrNot().pipe(
+      map((x: any) => {
+        if (x['active'] == 'AVAILABLE') {
+          this.commonServ.userData = x;
+          return true;
+        }
+        return false;
+      })
+    );
   }
 }

@@ -1,0 +1,26 @@
+<button mat-flat-button class="button-color back-button" (click)="goToHome()">
+  Back
+</button>
+<div class="form-style">
+  <h2>{{ action }}</h2>
+  <form [formGroup]="employeeFormGroup">
+    <mat-form-field appearance="outline">
+      <mat-label>First Name</mat-label>
+      <input matInput placeholder="Enter here" formControlName="firstName" />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Last Name</mat-label>
+      <input matInput placeholder="Enter here" formControlName="lastName" />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Email Id</mat-label>
+      <input matInput placeholder="Enter here" formControlName="email" />
+    </mat-form-field>
+    <div *ngIf="this.action !== 'Show User'" class="buttons">
+      <button mat-flat-button class="button-color" (click)="createOrUpdate()">
+        {{ action }}
+      </button>
+      <button mat-flat-button class="button-color" type="reset">Clear</button>
+    </div>
+  </form>
+</div>

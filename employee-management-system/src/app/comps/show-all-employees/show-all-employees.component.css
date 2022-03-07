@@ -1,0 +1,38 @@
+.table-style,
+.heading {
+  width: 60%;
+}
+.table-style > table {
+  border-collapse: collapse;
+}
+.center-table {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.buttons {
+  display: flex;
+  justify-content: center;
+}
+
+tr > th {
+  background: #04aa6d;
+  color: white;
+  padding: 0.5em;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+tr > td {
+  padding: 0.5em;
+}
+
+.button-color {
+  background-color: #04aa6d;
+  color: white;
+}
+
+.button-color:nth-child(n-1) {
+  margin-left: 0.2em;
+}

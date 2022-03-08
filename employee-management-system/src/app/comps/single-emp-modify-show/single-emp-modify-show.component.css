@@ -6,7 +6,7 @@
 .form-style form {
   display: flex;
   flex-direction: column;
-  width: 30%;
+  width: 80%;
 }
 .buttons {
   display: flex;
@@ -17,5 +17,11 @@
   color: white;
 }
 .back-button {
-  margin-left: 0.2em;
+  margin-left: 0.5em;
+}
+
+@media only screen and (min-width: 768px) {
+  .form-style form {
+    width: 40%;
+  }
 }

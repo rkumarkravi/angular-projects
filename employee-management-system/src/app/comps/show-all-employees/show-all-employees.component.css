@@ -19,6 +19,9 @@ tr > th {
   background: #04aa6d;
   color: white;
   padding: 0.5em;
+  position: sticky;
+  top: 0;
+  z-index: 1;
 }
 
 tr:nth-child(even) {
@@ -35,4 +38,11 @@ tr > td {
 
 .button-color:nth-child(n-1) {
   margin-left: 0.2em;
+}
+
+@media only screen and (min-width: 768px) {
+  .table-style,
+  .heading {
+    width: 80%;
+  }
 }

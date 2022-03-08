@@ -21,7 +21,7 @@ tr > th {
   padding: 0.5em;
 }
 
-tr:nth-child(even) {
+tr{
   background-color: #f2f2f2;
 }
 tr > td {

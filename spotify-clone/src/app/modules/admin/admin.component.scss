@@ -1,0 +1,10 @@
+::ng-deep .mat-tab-label,
+::ng-deep .mat-tab-link {
+  color: rgb(255 255 255);
+}
+.admin {
+  margin: 1em;
+  ::ng-deep .mat-tab-body {
+    height: 100%;
+  }
+}

@@ -1,0 +1,32 @@
+.modify-style {
+  margin-top: 0.5em;
+  height: 100%;
+  .album-style {
+    mat-form-field {
+      margin-right: 1em;
+    }
+  }
+  .uploading-section {
+    .extension {
+      margin: 0.5em 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .extension-style {
+        width: 2em;
+        padding: 0.4em;
+        font-size: 2em;
+        color: #4caf50;
+        border-radius: 10px;
+        background: black;
+      }
+      .music-detail {
+        display: flex;
+        align-items: center;
+        font-size: 1.5em;
+        width: 85%;
+        justify-content: space-between;
+      }
+    }
+  }
+}

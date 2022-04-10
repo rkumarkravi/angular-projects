@@ -1,0 +1,11 @@
+@import '../../../../styles.scss';
+.greet-style{
+  $background-base: #121212;
+  .greet{
+    font-size: 2em;
+    font-weight: bold;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: map-get($custom-colors, text);
+    letter-spacing: .1em;
+  }
+}

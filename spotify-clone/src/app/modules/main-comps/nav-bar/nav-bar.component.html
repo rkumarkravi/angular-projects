@@ -1,0 +1,17 @@
+<nav>
+  <div class="arrows">
+    <mat-icon>arrow_circle_left</mat-icon>
+    <mat-icon>arrow_circle_right</mat-icon>
+  </div>
+  <div class="profile">
+    <mat-icon>account_circle</mat-icon>
+    <div class="profile-name">
+      <div>User Name</div>
+    </div>
+    <mat-icon [matMenuTriggerFor]="vertebrates">arrow_drop_down</mat-icon>
+    <mat-menu #vertebrates="matMenu">
+      <button mat-menu-item>Birds</button>
+      <button mat-menu-item>Mammals</button>
+    </mat-menu>
+  </div>
+</nav>

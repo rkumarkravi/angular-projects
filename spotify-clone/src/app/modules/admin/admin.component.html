@@ -1,0 +1,13 @@
+<div class="admin">
+  <mat-tab-group>
+    <mat-tab label="Create Album"
+      ><ng-template matTabContent>
+        <app-create-modify-album></app-create-modify-album> </ng-template
+    ></mat-tab>
+    <mat-tab label="Show Albums"
+      ><ng-template matTabContent>
+        <app-show-albums></app-show-albums> </ng-template
+    ></mat-tab>
+  </mat-tab-group>
+  <router-outlet></router-outlet>
+</div>

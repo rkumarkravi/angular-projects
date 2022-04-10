@@ -1,0 +1,8 @@
+@import '../styles.scss';
+.main-app{
+  // background-color:map-get($custom-colors, text) ;
+  display: flex;
+  .route-style{
+    width: 100%;
+  }
+}

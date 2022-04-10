@@ -1,0 +1,18 @@
+/* You can add global styles to this file, and also import other style files */
+
+*{
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+body{
+  background-color:#121212;
+  color: #FFFFFF;
+}
+$custom-colors: (
+  text: #FFFFFF,
+  background: #121212,
+);
+$background-base: #121212;
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+

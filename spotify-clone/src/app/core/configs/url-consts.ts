@@ -1,3 +1,3 @@
 export const urlConsts = {
-  url: 'http://localhost:8080/',
+  baseurl: 'http://localhost:8080/musify/',
 };

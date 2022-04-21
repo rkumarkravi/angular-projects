@@ -19,6 +19,7 @@ export class CreateModifyAlbumComponent implements OnInit {
   });
   selectedFiles: Array<File> = [];
   selFiles: any = null;
+  currentAid: any;
   constructor(
     private fileUploadService: FileService,
     private dataSevice: DataService
@@ -58,10 +59,10 @@ export class CreateModifyAlbumComponent implements OnInit {
 
     if (this.selectedFiles.length) {
       for (let i = 0; i < this.selectedFiles.length; i++) {
-        formData.append('files', this.selFiles[i], this.selFiles[i].name);
+        formData.append('files', this.selectedFiles[i], this.selectedFiles[i].name);
       }
 
-      this.fileUploadService.filesUpload(formData).subscribe(
+      this.fileUploadService.filesUpload(`files/${this.currentAid}`,formData).subscribe(
         (res) => {
           console.log(res);
         },
@@ -82,8 +83,8 @@ export class CreateModifyAlbumComponent implements OnInit {
     console.log(this.firstFormGroup.value);
     this.dataSevice
       .post('album/create', this.firstFormGroup.value)
-      .subscribe((res) => {
-        console.log(res);
+      .subscribe((res:any) => {
+        this.currentAid=res?.albumId;
       });
   }
 }

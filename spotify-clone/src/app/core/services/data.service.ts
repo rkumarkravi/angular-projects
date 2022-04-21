@@ -9,6 +9,9 @@ export class DataService {
 constructor(private httpClient:HttpClient) { }
 
   post(url:string,data:any){
-    return this.httpClient.post(urlConsts+url,data);
+    return this.httpClient.post(urlConsts.baseurl+url,data);
+  }
+  get(url:string){
+    return this.httpClient.get(urlConsts.baseurl+url);
   }
 }

@@ -1,14 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-
+import { urlConsts } from '../configs/url-consts';
 @Injectable({
   providedIn: 'root',
 })
 export class FileService {
-  private baseAPI = 'http://localhost:8080';
   constructor(private httpClient: HttpClient) {}
-  filesUpload(files: FormData): Observable<any> {
-    return this.httpClient.post(this.baseAPI + '/files/', files);
+  filesUpload(url:string,files: FormData): Observable<any> {
+    return this.httpClient.post(urlConsts.baseurl+`upload/${url}`, files);
   }
 }

@@ -1,6 +1,7 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { DataService } from 'src/app/core/services/data.service';
 import { FileService } from 'src/app/core/services/file-upload.service';
 
 @Component({
@@ -18,7 +19,10 @@ export class CreateModifyAlbumComponent implements OnInit {
   });
   selectedFiles: Array<File> = [];
   selFiles: any = null;
-  constructor(private fileUploadService: FileService) {}
+  constructor(
+    private fileUploadService: FileService,
+    private dataSevice: DataService
+  ) {}
 
   ngOnInit(): void {}
 
@@ -72,5 +76,14 @@ export class CreateModifyAlbumComponent implements OnInit {
         }
       );
     }
+  }
+
+  createAlbum() {
+    console.log(this.firstFormGroup.value);
+    this.dataSevice
+      .post('album/create', this.firstFormGroup.value)
+      .subscribe((res) => {
+        console.log(res);
+      });
   }
 }

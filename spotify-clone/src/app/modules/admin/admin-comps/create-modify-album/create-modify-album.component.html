@@ -20,7 +20,14 @@
           />
         </mat-form-field>
         <div>
-          <button mat-button color="primary" matStepperNext>Next</button>
+          <button
+            mat-button
+            color="primary"
+            matStepperNext
+            (click)="createAlbum()"
+          >
+            Next
+          </button>
         </div>
       </form>
     </mat-step>

@@ -7,6 +7,7 @@ import { MainModule } from './modules/main-comps/main.module';
 import { PagesModule } from './modules/pages/pages.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -16,6 +17,7 @@ import { HttpClientModule } from '@angular/common/http';
     PagesModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    MatProgressBarModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

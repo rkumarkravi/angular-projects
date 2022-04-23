@@ -13,6 +13,7 @@ export class CreateModifyAlbumComponent implements OnInit {
   public firstFormGroup: FormGroup = new FormGroup({
     albumName: new FormControl('', [Validators.required]),
     creatorName: new FormControl('', [Validators.required]),
+    albumArt: new FormControl(''),
   });
   public secondFormGroup: FormGroup = new FormGroup({
     upload: new FormControl(''),
@@ -59,32 +60,39 @@ export class CreateModifyAlbumComponent implements OnInit {
 
     if (this.selectedFiles.length) {
       for (let i = 0; i < this.selectedFiles.length; i++) {
-        formData.append('files', this.selectedFiles[i], this.selectedFiles[i].name);
+        formData.append(
+          'files',
+          this.selectedFiles[i],
+          this.selectedFiles[i].name
+        );
       }
 
-      this.fileUploadService.filesUpload(`files/${this.currentAid}`,formData).subscribe(
-        (res) => {
-          console.log(res);
-        },
-        (err) => {
-          console.log(err);
-          //this.uploadErrorMessage = err.error.error;
-          console.log(
-            this.selectedFiles.length +
-              ' files not uploaded. Error: ' +
-              err.error.error
-          );
-        }
-      );
+      this.fileUploadService
+        .filesUpload(`files/${this.currentAid}`, formData)
+        .subscribe(
+          (res) => {
+            console.log(res);
+          },
+          (err) => {
+            console.log(err);
+            //this.uploadErrorMessage = err.error.error;
+            console.log(
+              this.selectedFiles.length +
+                ' files not uploaded. Error: ' +
+                err.error.error
+            );
+          }
+        );
     }
   }
 
   createAlbum() {
     console.log(this.firstFormGroup.value);
-    this.dataSevice
-      .post('album/create', this.firstFormGroup.value)
-      .subscribe((res:any) => {
-        this.currentAid=res?.albumId;
-      });
+    if (this.firstFormGroup.valid)
+      this.dataSevice
+        .post('album/create', this.firstFormGroup.value)
+        .subscribe((res: any) => {
+          this.currentAid = res?.albumId;
+        });
   }
 }

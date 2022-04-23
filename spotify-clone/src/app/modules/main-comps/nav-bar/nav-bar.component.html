@@ -3,7 +3,13 @@
     <mat-icon>arrow_circle_left</mat-icon>
     <mat-icon>arrow_circle_right</mat-icon>
   </div>
-  <div class="profile">
+  <div class="auth" *ngIf="!login">
+    <button mat-flat-button color="primary" (click)="openLoginSignup('signup')">SignUp</button>
+    <button mat-flat-button color="primary" (click)="openLoginSignup('login')" >Login</button>
+    <!-- <button class="auth-button signup">SignUp</button>
+    <button class="auth-button login">Login</button> -->
+  </div>
+  <div class="profile" *ngIf="login">
     <mat-icon>account_circle</mat-icon>
     <div class="profile-name">
       <div>User Name</div>

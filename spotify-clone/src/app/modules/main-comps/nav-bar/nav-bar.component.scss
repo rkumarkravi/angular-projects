@@ -20,6 +20,20 @@ nav{
       margin-left: 0.5em;
     }
   }
+  .auth{
+    display: flex;
+    justify-content: space-between;
+    width: 12%;
+    margin-right: 0.5em;
+    .auth-button{
+      padding: 1em;
+      color: white;
+      background-color: #121212;
+      border-radius: 20px;
+      border:1px solid #4caf50;
+      width: 10em;
+    }
+  }
   .profile{
     margin-right: 1em;
     display: flex;

@@ -3,22 +3,35 @@
     <mat-step [stepControl]="firstFormGroup">
       <form [formGroup]="firstFormGroup" class="album-style">
         <ng-template matStepLabel>Fill out album info</ng-template>
-        <mat-form-field appearance="fill">
-          <mat-label>Album Name</mat-label>
-          <input
-            matInput
-            placeholder="Album Name"
-            formControlName="albumName"
-          />
-        </mat-form-field>
-        <mat-form-field appearance="fill">
-          <mat-label>Creator Name</mat-label>
-          <input
-            matInput
-            placeholder="Creator Name"
-            formControlName="creatorName"
-          />
-        </mat-form-field>
+        <div class="tf">
+          <mat-form-field appearance="fill">
+            <mat-label>Album Name</mat-label>
+            <input
+              matInput
+              placeholder="Album Name"
+              formControlName="albumName"
+            />
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Creator Name</mat-label>
+            <input
+              matInput
+              placeholder="Creator Name"
+              formControlName="creatorName"
+            />
+          </mat-form-field>
+        </div>
+        <div class="tf">
+          <mat-form-field appearance="fill">
+            <mat-label>Album Art URL</mat-label>
+            <input
+              matInput
+              placeholder="Album Art URL"
+              formControlName="albumArt"
+              type="url"
+            />
+          </mat-form-field>
+        </div>
         <div>
           <button
             mat-button
@@ -60,14 +73,21 @@
           </div>
         </div>
         <div>
-          <button mat-button color="primary" matStepperPrevious>Back</button>
-          <button mat-button color="primary" matStepperNext (click)="eventUploadFiles()">Next</button>
+          <!-- <button mat-button color="primary" matStepperPrevious>Back</button> -->
+          <button
+            mat-button
+            color="primary"
+            matStepperNext
+            (click)="eventUploadFiles()"
+          >
+            Next
+          </button>
         </div>
       </form>
     </mat-step>
     <mat-step>
       <ng-template matStepLabel>Done</ng-template>
-      <p>You are now done.</p>
+      <p>Album created.</p>
       <div>
         <button mat-button color="primary" matStepperPrevious>Back</button>
         <button mat-button color="primary" (click)="stepper.reset()">

@@ -7,6 +7,8 @@ import { DumbCompsModule } from './../dumb-comps/dumb-comps.module';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
+import {MatButtonModule} from '@angular/material/button';
+import {MatDialogModule} from '@angular/material/dialog';
 @NgModule({
   declarations: [SideNavComponent, NavBarComponent, ControlComponent],
   imports: [
@@ -15,6 +17,8 @@ import { MatMenuModule } from '@angular/material/menu';
     MatDividerModule,
     MatIconModule,
     MatMenuModule,
+    MatButtonModule,
+    MatDialogModule
   ],
   exports: [SideNavComponent, NavBarComponent, ControlComponent],
 })

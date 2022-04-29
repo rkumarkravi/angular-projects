@@ -11,14 +11,17 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { LoginComponent } from './login/login.component';
 import {MatButtonModule} from '@angular/material/button';
+import { CreatePlaylistComponent, ExtraMenuRendererComponent } from './create-playlist/create-playlist.component';
+import {MatMenuModule} from '@angular/material/menu';
+import { AgGridModule } from 'ag-grid-angular';
 @NgModule({
   imports: [CommonModule, DumbCompsModule, MainModule,
     FormsModule,
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
-    MatIconModule,MatButtonModule],
-  exports: [AlbumComponent, SearchComponent, HomePageComponent,LoginComponent],
-  declarations: [AlbumComponent, SearchComponent, HomePageComponent,LoginComponent],
+    MatIconModule,MatButtonModule,AgGridModule,MatMenuModule],
+  exports: [AlbumComponent, SearchComponent, HomePageComponent,LoginComponent,CreatePlaylistComponent,ExtraMenuRendererComponent],
+  declarations: [AlbumComponent, SearchComponent, HomePageComponent,LoginComponent,CreatePlaylistComponent,ExtraMenuRendererComponent],
 })
 export class PagesModule {}

@@ -23,6 +23,7 @@
     <app-icon-with-name
       icon="playlist_add_check"
       title="Create PlayList"
+      (click)="navigate('/create-playlist')"
     ></app-icon-with-name>
     <app-icon-with-name
       icon="favorite"
@@ -35,7 +36,9 @@
     ></app-icon-with-name>
     <mat-divider></mat-divider>
   </div>
-  <!-- <div class="playlist-grow">
-    <Playlist />
-  </div> -->
+  <div class="playlist-grow">
+    <ng-container>
+      <div></div>
+    </ng-container>
+  </div>
 </div>

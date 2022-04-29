@@ -8,6 +8,7 @@ import { PagesModule } from './modules/pages/pages.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { AgGridModule } from 'ag-grid-angular';
 @NgModule({
   declarations: [AppComponent],
   imports: [

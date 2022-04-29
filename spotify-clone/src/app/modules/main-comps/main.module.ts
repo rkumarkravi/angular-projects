@@ -9,8 +9,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import {MatButtonModule} from '@angular/material/button';
 import {MatDialogModule} from '@angular/material/dialog';
+import { AddToPlaylistDialogComponent } from './add-to-playlist-dialog/add-to-playlist-dialog.component';
 @NgModule({
-  declarations: [SideNavComponent, NavBarComponent, ControlComponent],
+  declarations: [SideNavComponent, NavBarComponent, ControlComponent,AddToPlaylistDialogComponent],
   imports: [
     CommonModule,
     DumbCompsModule,
@@ -20,6 +21,6 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatButtonModule,
     MatDialogModule
   ],
-  exports: [SideNavComponent, NavBarComponent, ControlComponent],
+  exports: [SideNavComponent, NavBarComponent, ControlComponent,AddToPlaylistDialogComponent],
 })
 export class MainModule {}

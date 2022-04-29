@@ -1,0 +1,23 @@
+<div>
+  <form [formGroup]="searchMusicForm" style="display: flex;justify-content: center;margin-top: 0.2em;">
+    <mat-form-field class="example-form-field" appearance="outline" style="width: 90%;padding:0 1em;">
+      <mat-label>Search Music to add in your playlist..</mat-label>
+      <input matInput type="text" [(ngModel)]="searchText" formControlName="searchField">
+      <button *ngIf="searchText" matSuffix mat-icon-button aria-label="Clear" (click)="searchText=''">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+  </form>
+  <div>
+    <ag-grid-angular
+    style="width: 90%;
+    height: 400px;
+    margin-left: 5.4em;"
+    class="ag-theme-balham-dark"
+    [rowHeight]="50"
+    [rowData]="searchData"
+    [columnDefs]="columnDefs"
+    (gridReady)="onGridReady($event)">
+    </ag-grid-angular>
+  </div>
+</div>

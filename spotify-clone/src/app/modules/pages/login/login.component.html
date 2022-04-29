@@ -9,7 +9,7 @@
         <input
           matInput
           placeholder="email"
-          formControlName="emailId"
+          formControlName="email"
           type="email"
         />
       </mat-form-field>
@@ -18,14 +18,14 @@
         <input
           matInput
           placeholder="password"
-          formControlName="password"
+          formControlName="pass"
           type="password"
         />
       </mat-form-field>
       <button mat-flat-button color="primary">Login</button>
     </form>
 
-    <form [formGroup]="loForm" *ngIf="data.type=='signup'">
+    <form [formGroup]="loForm" *ngIf="data.type=='signup'" (ngSubmit)="createUser()">
       <mat-form-field appearance="fill" style="width: 100%">
         <mat-label>Name</mat-label>
         <input
@@ -40,7 +40,7 @@
         <input
           matInput
           placeholder="email"
-          formControlName="emailId"
+          formControlName="email"
           type="email"
         />
       </mat-form-field><br>
@@ -49,7 +49,7 @@
         <input
           matInput
           placeholder="password"
-          formControlName="password"
+          formControlName="pass"
           type="password"
         />
       </mat-form-field><br>

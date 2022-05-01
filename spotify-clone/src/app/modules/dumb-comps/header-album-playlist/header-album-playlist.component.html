@@ -1,0 +1,23 @@
+<div
+  style="
+    margin: 2em 4.8em;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+  "
+  [style.background-color]="palette?.Vibrant?.hex"
+>
+  <div
+    class="album-image"
+    style="
+      background-color: gray;
+      height: 10em;
+      width: 10em;
+      border-radius: 0.4em;
+      background-size: contain;
+    " [style.background-image]="'url('+imgSrc+')'"
+  ></div>
+  <div class="album-name" style="font-size: 5em">
+    {{ name }}
+  </div>
+</div>

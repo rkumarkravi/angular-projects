@@ -28,14 +28,17 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/assets/imgs"
             ],
             "styles": [
 
               "src/styles.scss",
               "src/app-theme.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/node-vibrant/dist/vibrant.js"
+            ]
           },
           "configurations": {
             "production": {

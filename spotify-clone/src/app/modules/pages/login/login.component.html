@@ -22,7 +22,7 @@
           type="password"
         />
       </mat-form-field>
-      <button mat-flat-button color="primary">Login</button>
+      <button mat-flat-button color="primary" (click)="loginUser()">Login</button>
     </form>
 
     <form [formGroup]="loForm" *ngIf="data.type=='signup'" (ngSubmit)="createUser()">
@@ -67,9 +67,9 @@
   </section>
   <br />
   <h2 *ngIf="data.type=='signup'">
-    Already have an account ?<b style="color: #4caf50; cursor: pointer"> Login</b>
+    Already have an account ?<b style="color: #4caf50; cursor: pointer" (click)="data.type='login'"> Login</b>
   </h2>
   <h2 *ngIf="data.type=='login'">
-    Dont have a account ?<b style="color: #4caf50; cursor: pointer"> Sign up</b>
+    Dont have a account ?<b style="color: #4caf50; cursor: pointer" (click)="data.type='signup'"> Sign up</b>
   </h2>
 </div>

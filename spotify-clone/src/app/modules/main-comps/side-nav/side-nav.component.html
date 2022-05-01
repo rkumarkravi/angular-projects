@@ -14,8 +14,11 @@
       title="Home"
       (click)="navigate('/')"
     ></app-icon-with-name>
-    <app-icon-with-name icon="search" title="Search"></app-icon-with-name>
-
+    <app-icon-with-name
+      icon="search"
+      title="Search"
+      (click)="navigate('/search')"
+    ></app-icon-with-name>
     <app-icon-with-name
       icon="library_music"
       title="Your Library"
@@ -37,8 +40,8 @@
     <mat-divider></mat-divider>
   </div>
   <div class="playlist-grow">
-    <ng-container>
-      <div></div>
+    <ng-container *ngFor="let item of playlists">
+      <div class="playlist-item-style" (click)="navigateWithParam('/album',item)">{{ item.name }}</div>
     </ng-container>
   </div>
 </div>

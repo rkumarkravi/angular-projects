@@ -1,5 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import {
+  MatBottomSheet,
+  MatBottomSheetRef,
+} from '@angular/material/bottom-sheet';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ICellRendererAngularComp } from 'ag-grid-angular';
 import {
@@ -9,7 +13,10 @@ import {
   ICellRendererParams,
 } from 'ag-grid-community';
 import { debounceTime } from 'rxjs';
-import { AddToPlaylistDialogComponent } from '../../main-comps/add-to-playlist-dialog/add-to-playlist-dialog.component';
+import { UserInfo } from 'src/app/core/models/UserInfo';
+import { AuthService } from 'src/app/core/services/auth.service';
+import { DataService } from 'src/app/core/services/data.service';
+import { UserService } from 'src/app/core/services/user.service';
 
 @Component({
   selector: 'app-create-playlist',
@@ -17,21 +24,41 @@ import { AddToPlaylistDialogComponent } from '../../main-comps/add-to-playlist-d
   styleUrls: ['./create-playlist.component.scss'],
 })
 export class CreatePlaylistComponent implements OnInit {
+  @Input("showSearch") showSearch: boolean = true;
   public searchMusicForm: FormGroup = new FormGroup({
     searchField: new FormControl(''),
   });
   public searchText: string = '';
+  @Input("gridData")
   public searchData = <any>[];
+  playlist = <any>[];
+  userInfo: UserInfo | undefined | null;
+  @Input("gridCol")
   public columnDefs: ColDef[] = [
-    { field: 'name' },
+    { field: 'musicName' },
     { field: 'contentType' },
     { field: 'createdDate' },
-    { headerName: '', cellRenderer: ExtraMenuRendererComponent },
+    {
+      headerName: '',
+      cellRenderer: ExtraMenuRendererComponent,
+      cellRendererParams: { playlist: this.playlist },
+    },
   ];
+  public defaultColumnDef: ColDef = {
+    editable: true,
+    sortable: true,
+    flex: 1,
+    minWidth: 100,
+  };
   gridColumnApi: any;
   gridApi: any;
 
-  constructor(private matDialog: MatDialog) {}
+  constructor(
+    private matDialog: MatDialog,
+    private dataService: DataService,
+    private authService: AuthService,
+    private userService: UserService
+  ) {}
 
   ngOnInit() {
     this.searchMusicForm
@@ -39,59 +66,37 @@ export class CreatePlaylistComponent implements OnInit {
       ?.valueChanges.pipe(debounceTime(500))
       .subscribe((search) => {
         console.log(search);
-        this.searchData = this.getData(search);
+        this.getData(search);
       });
+    this.authService
+      .getUserInfo()
+      .subscribe((x: UserInfo | null) => (this.userInfo = x));
+
+    this.userService.$playlists.subscribe((data) => {
+      this.playlist = data;
+    });
   }
 
   onGridReady(params: GridReadyEvent) {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
     this.gridApi.sizeColumnsToFit();
+    this.getPlayList();
   }
 
   getData(queryParam: string) {
-    return [
-      {
-        id: 'afdda3f9-89af-4741-b372-00516250518b',
-        name: 'abc - Bewafa.mp3',
-        contentType: 'audio/mpeg',
-        blobId: '9db9d21f-d803-4dd4-8e5c-ec18d5c04b22',
-        published: false,
-        createdDate: '2022-04-29T15:49:03.368+00:00',
-      },
-      {
-        id: 'afdda3f9-89af-4741-b372-00516250518b',
-        name: 'bck - Bewafa.mp3',
-        contentType: 'audio/mpeg',
-        blobId: '9db9d21f-d803-4dd4-8e5c-ec18d5c04b22',
-        published: false,
-        createdDate: '2022-04-29T15:49:03.368+00:00',
-      },
-      {
-        id: 'afdda3f9-89af-4741-b372-00516250518b',
-        name: 'cjkld - Bewafa.mp3',
-        contentType: 'audio/mpeg',
-        blobId: '9db9d21f-d803-4dd4-8e5c-ec18d5c04b22',
-        published: false,
-        createdDate: '2022-04-29T15:49:03.368+00:00',
-      },
-      {
-        id: 'afdda3f9-89af-4741-b372-00516250518b',
-        name: 'fjkj - Bewafa.mp3',
-        contentType: 'audio/mpeg',
-        blobId: '9db9d21f-d803-4dd4-8e5c-ec18d5c04b22',
-        published: false,
-        createdDate: '2022-04-29T15:49:03.368+00:00',
-      },
-    ].filter((x) => x.name.indexOf(queryParam) > 0);
+    if (queryParam)
+      this.dataService.get(`search/music/${queryParam}`).subscribe((x: any) => {
+        if (x.length > 0) {
+          this.searchData = x;
+        }
+      });
   }
 
-  addToPlayList() {
-    let dialogRef: MatDialogRef<AddToPlaylistDialogComponent> =
-      this.matDialog.open(AddToPlaylistDialogComponent);
-    dialogRef.afterClosed().subscribe((data) => {
-      console.log(data);
-    });
+  getPlayList() {
+    setTimeout(() => {
+    this.userService.refreshPlayList(this.userInfo?.uid);
+    }, 1000);
   }
 }
 
@@ -101,24 +106,123 @@ export class CreatePlaylistComponent implements OnInit {
     <button
       mat-icon-button
       [matMenuTriggerFor]="menu"
-      aria-label="Example icon-button with a menu"
+      aria-label="extra menus on music track"
     >
       <mat-icon>more_vert</mat-icon>
     </button>
-    <mat-menu #menu="matMenu">
-      <button mat-menu-item>
+    <mat-menu #menu="matMenu" xPosition="after">
+      <button mat-menu-item [matMenuTriggerFor]="playlist">
         <mat-icon>add</mat-icon>
         <span>Add to playList</span>
       </button>
     </mat-menu>
+    <mat-menu #playlist="matMenu">
+      <button mat-menu-item (click)="createPlayList()">Create Playlist</button>
+      <mat-divider></mat-divider>
+      <ng-container *ngFor="let item of params.context.playlist">
+        <button mat-menu-item (click)="addToPlayList(item.pid)">
+          {{ item.name }}
+        </button>
+      </ng-container>
+    </mat-menu>
   `,
 })
 export class ExtraMenuRendererComponent implements ICellRendererAngularComp {
-  params: ICellRendererParams = <any>{};
+  params: any = <any>{};
+  constructor(private _bottomSheet: MatBottomSheet) {}
   refresh(params: ICellRendererParams): boolean {
     throw new Error('Method not implemented.');
   }
   agInit(params: ICellRendererParams): void {
     this.params = params;
+  }
+
+  createPlayList() {
+    let ref: MatBottomSheetRef = this._bottomSheet.open(
+      EnterNewPlayListNameComponent,
+      {
+        disableClose: true,
+      }
+    );
+    ref.afterDismissed().subscribe((data) => {
+      if (data) {
+        this.params.context.dataService
+          .post(`playlist/create`, {
+            playlistName: data,
+            userId: this.params.context.userInfo.uid,
+            mid:this.params.data.id,
+          })
+          .subscribe((x: any) => {
+            console.log(x);
+          });
+        this.params.context.getPlayList();
+      } else {
+        console.log('data is :' + data);
+      }
+    });
+  }
+
+  addToPlayList(playListId: string) {
+    console.log(
+      `Add to Playlist...${playListId} and music Info ${this.params.data.id}`
+    );
+    this.params.context.dataService.post(`playlist/add`, {
+      mid: this.params.data.id,
+      pid: playListId,
+    }).subscribe((x: any) => {
+      console.log(x);
+    });
+  }
+}
+
+@Component({
+  selector: 'bottom-sheet-overview-example-sheet',
+  template: `
+    <section>
+      <div
+        style="display:flex;justify-content:space-between;align-items:center;"
+      >
+        <b>Playlist</b>
+        <button
+          matSuffix
+          mat-icon-button
+          aria-label="Close"
+          (click)="closeBottomSheet($event)"
+        >
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+      <mat-form-field appearance="outline" style="width: 90%;padding:0 1em;">
+        <mat-label>Enter playlist name..</mat-label>
+        <input matInput type="text" [(ngModel)]="searchText" />
+        <button
+          *ngIf="searchText"
+          matSuffix
+          mat-icon-button
+          aria-label="Clear"
+          (click)="searchText = ''"
+        >
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+      <button matSuffix mat-button aria-label="Add" (click)="savePlaylist()">
+        <mat-icon>add</mat-icon> Playlist
+      </button>
+    </section>
+  `,
+})
+export class EnterNewPlayListNameComponent {
+  searchText: string | undefined;
+  constructor(
+    private _bottomSheetRef: MatBottomSheetRef<EnterNewPlayListNameComponent>
+  ) {}
+
+  closeBottomSheet(event: MouseEvent): void {
+    this._bottomSheetRef.dismiss(this.searchText);
+    event.preventDefault();
+  }
+
+  savePlaylist() {
+    this._bottomSheetRef.dismiss(this.searchText);
   }
 }

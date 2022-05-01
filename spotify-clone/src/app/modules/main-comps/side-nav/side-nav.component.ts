@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { DataService } from 'src/app/core/services/data.service';
+import { UserInfo } from 'src/app/core/models/UserInfo';
+import { AuthService } from 'src/app/core/services/auth.service';
+import { UserService } from 'src/app/core/services/user.service';
 
 @Component({
   selector: 'app-side-nav',
@@ -8,20 +10,34 @@ import { DataService } from 'src/app/core/services/data.service';
   styleUrls: ['./side-nav.component.scss'],
 })
 export class SideNavComponent implements OnInit {
-  uid:String="";
-  constructor(private router: Router,private dataService:DataService) {}
+  playlists: any;
+  constructor(
+    private router: Router,
+    private authService: AuthService,
+    private userService: UserService
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.authService.getUserInfo().subscribe((data: UserInfo | null) => {
+      this.getAllPlayList(data?.uid);
+    });
+  }
 
   navigate(path: string) {
     this.router.navigate([path]);
   }
 
-  getAllPlayList(){
-    this.dataService.get(`playlist/getAllPlayList/${this.uid}`).subscribe(
-      data=>{
-        console.log(data);
-      }
-    )
+  navigateWithParam(path: string, data: any) {
+    this.router.navigate([path], {
+      queryParams: data,
+      skipLocationChange: true,
+    });
+  }
+
+  getAllPlayList(uid: number | undefined) {
+    this.userService.refreshPlayList(uid);
+    this.userService.$playlists.subscribe((data) => {
+      this.playlists = data;
+    });
   }
 }

@@ -36,7 +36,7 @@ export interface Album {
 
 export interface MusicFile {
   id?: string;
-  name?: string;
+  musicName?: string;
   contentType?: string;
   albumId?: string;
   albumName?: string;

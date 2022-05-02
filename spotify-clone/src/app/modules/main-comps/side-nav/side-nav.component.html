@@ -19,18 +19,19 @@
       title="Search"
       (click)="navigate('/search')"
     ></app-icon-with-name>
-    <app-icon-with-name
+    <!-- <app-icon-with-name
       icon="library_music"
       title="Your Library"
-    ></app-icon-with-name>
-    <app-icon-with-name
+    ></app-icon-with-name> -->
+    <!-- <app-icon-with-name
       icon="playlist_add_check"
       title="Create PlayList"
       (click)="navigate('/create-playlist')"
-    ></app-icon-with-name>
+    ></app-icon-with-name> -->
     <app-icon-with-name
       icon="favorite"
       title="Liked Songs"
+      (click)="navigateWithParam('/album',likedSongs)"
     ></app-icon-with-name>
     <app-icon-with-name
       icon="upload"

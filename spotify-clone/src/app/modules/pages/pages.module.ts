@@ -15,6 +15,7 @@ import {
   CreatePlaylistComponent,
   EnterNewPlayListNameComponent,
   ExtraMenuRendererComponent,
+  LikeSongRendererComponent,
 } from './create-playlist/create-playlist.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { AgGridModule } from 'ag-grid-angular';
@@ -45,7 +46,8 @@ import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
     LoginComponent,
     CreatePlaylistComponent,
     ExtraMenuRendererComponent,
-    EnterNewPlayListNameComponent
+    EnterNewPlayListNameComponent,
+    LikeSongRendererComponent
   ],
   declarations: [
     AlbumComponent,
@@ -54,7 +56,8 @@ import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
     LoginComponent,
     CreatePlaylistComponent,
     ExtraMenuRendererComponent,
-    EnterNewPlayListNameComponent
+    EnterNewPlayListNameComponent,
+    LikeSongRendererComponent
   ],
 })
 export class PagesModule {}

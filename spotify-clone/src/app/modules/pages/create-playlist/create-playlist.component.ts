@@ -37,7 +37,11 @@ export class CreatePlaylistComponent implements OnInit {
   public columnDefs: ColDef[] = [
     { field: 'musicName' },
     { field: 'contentType' },
-    { field: 'createdDate' },
+    { field: 'createdDate' },{
+      headerName: '',
+      cellRenderer: LikeSongRendererComponent,
+      cellRendererParams: { playlist: this.playlist },
+    },
     {
       headerName: '',
       cellRenderer: ExtraMenuRendererComponent,
@@ -97,6 +101,34 @@ export class CreatePlaylistComponent implements OnInit {
     setTimeout(() => {
     this.userService.refreshPlayList(this.userInfo?.uid);
     }, 1000);
+  }
+}
+
+@Component({
+  selector: 'extra-menu-component',
+  template: `<button mat-icon-button aria-label="Like Song" (click)="addToPlayList()"><mat-icon>favorite</mat-icon></button>`,
+})
+export class LikeSongRendererComponent implements ICellRendererAngularComp {
+  params: any = <any>{};
+  constructor(private _bottomSheet: MatBottomSheet) {}
+  refresh(params: ICellRendererParams): boolean {
+    throw new Error('Method not implemented.');
+  }
+  agInit(params: ICellRendererParams): void {
+    this.params = params;
+  }
+
+  addToPlayList() {
+    let playListId=this.params.context.userInfo.playlists.filter((x:any)=>x.name=="Liked Songs")[0]?.pid;
+    console.log(
+      `Add to Liked Songs...${playListId} and music Info ${this.params.data.id}`
+    );
+    this.params.context.dataService.post(`playlist/add`, {
+      mid: this.params.data.id,
+      pid: playListId,
+    }).subscribe((x: any) => {
+      console.log(x);
+    });
   }
 }
 

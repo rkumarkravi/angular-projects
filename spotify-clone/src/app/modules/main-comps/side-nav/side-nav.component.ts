@@ -11,6 +11,7 @@ import { UserService } from 'src/app/core/services/user.service';
 })
 export class SideNavComponent implements OnInit {
   playlists: any;
+  likedSongs: any;
   constructor(
     private router: Router,
     private authService: AuthService,
@@ -20,6 +21,7 @@ export class SideNavComponent implements OnInit {
   ngOnInit(): void {
     this.authService.getUserInfo().subscribe((data: UserInfo | null) => {
       this.getAllPlayList(data?.uid);
+      this.likedSongs=data?.playlists.filter((item) => item.name === 'Liked Songs')[0];
     });
   }
 

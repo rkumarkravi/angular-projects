@@ -16,6 +16,7 @@ import { debounceTime } from 'rxjs';
 import { UserInfo } from 'src/app/core/models/UserInfo';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { DataService } from 'src/app/core/services/data.service';
+import { LoaderService } from 'src/app/core/services/loader.service';
 import { UserService } from 'src/app/core/services/user.service';
 
 @Component({
@@ -61,7 +62,8 @@ export class CreatePlaylistComponent implements OnInit {
     private matDialog: MatDialog,
     private dataService: DataService,
     private authService: AuthService,
-    private userService: UserService
+    private userService: UserService,
+    private loaderService:LoaderService
   ) {}
 
   ngOnInit() {
@@ -105,8 +107,8 @@ export class CreatePlaylistComponent implements OnInit {
 }
 
 @Component({
-  selector: 'extra-menu-component',
-  template: `<button mat-icon-button aria-label="Like Song" (click)="addToPlayList()"><mat-icon>favorite</mat-icon></button>`,
+  selector: 'add-to-fav-component',
+  template: `<button mat-icon-button aria-label="Like Song" (click)="addToPlayList()"><mat-icon style="color:red;">favorite</mat-icon></button>`,
 })
 export class LikeSongRendererComponent implements ICellRendererAngularComp {
   params: any = <any>{};
@@ -128,6 +130,7 @@ export class LikeSongRendererComponent implements ICellRendererAngularComp {
       pid: playListId,
     }).subscribe((x: any) => {
       console.log(x);
+      this.params.context.loaderService.showSnackBarWithMessageAndAction("Added to your liked songs!","Ok",1);
     });
   }
 }

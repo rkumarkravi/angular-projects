@@ -1,1 +1,26 @@
-<div class="home"><app-greeting></app-greeting></div>
+<div class="home">
+  <app-greeting></app-greeting>
+  <h2>Playlists</h2>
+  <div
+    style="
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      column-gap: 2em;
+      row-gap: 1em;
+      width: 95%;
+    "
+  >
+    <ng-container *ngFor="let item of playlists">
+      <app-track [album]="item" [type]="'image-title'"></app-track>
+    </ng-container>
+  </div>
+
+  <div style=" margin-top: 2em">
+    <h2>Recent Arrived</h2>
+    <div style="display: inline-flex; gap: 2em;">
+      <ng-container *ngFor="let item of albums">
+        <app-track [album]="item" [type]="'big-image-title'"></app-track>
+      </ng-container>
+    </div>
+  </div>
+</div>

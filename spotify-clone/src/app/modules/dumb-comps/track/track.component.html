@@ -1,1 +1,23 @@
-<p>track works!</p>
+<div class="image-title" *ngIf="type === 'image-title'" (click)="navigateWithParam('/album',album,'playlist')">
+  <div class="image-text">
+    <img src="{{ album && album.albumArt? album.albumArt:'assets/imgs/album-default.png' }}" alt="album art" />
+    <h3>{{ album && album.name }}</h3>
+  </div>
+  <div style="position: relative; width: 0; height: 0">
+  <div class="play-button">
+    <mat-icon>play_arrow</mat-icon>
+  </div>
+</div>
+</div>
+
+<div class="big-image-title" *ngIf="type === 'big-image-title'" (click)="navigateWithParam('/album',album,'album')">
+  <div class="image-text">
+    <img src="{{ album.albumArt }}" alt="album art" />
+    <h5>{{ album.albumName }}</h5>
+  </div>
+  <div style="position: relative; width: 0; height: 0">
+  <div class="play-button">
+    <mat-icon>play_arrow</mat-icon>
+  </div>
+  </div>
+</div>

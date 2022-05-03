@@ -23,13 +23,25 @@ export class AlbumComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.queryParamMap.subscribe((x: any) => {
       console.log(x);
-      this.getAllMusicOfPlayList(x.params.pid);
+      if(x.params.type==='album'){
+        this.getAllMusicOfAlbum(x.params.albumId);
+      }else{
+        this.getAllMusicOfPlayList(x.params.pid);
+      }
       this.playListName=x.params.name;
     });
   }
 
   getAllMusicOfPlayList(id: string) {
+    id &&
     this.dataService.get('playlist/getTacks/' + id).subscribe((data) => {
+      this.playlist = data;
+    });
+  }
+
+  getAllMusicOfAlbum(id: string){
+    id &&
+    this.dataService.get('album/getTacks/' + id).subscribe((data) => {
       this.playlist = data;
     });
   }

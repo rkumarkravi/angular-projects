@@ -31,9 +31,13 @@ export class LoginComponent implements OnInit {
     this.dataService.post("user/create",this.loForm.value).subscribe(
       (data)=>{
         console.log(data);
-        this.loaderService.showSnackBarWithMessageAndAction("SignUp Successfull !","Ok");
+        this.loaderService.showSnackBarWithMessageAndAction("SignUp Successfull !","🤓");
         this.data.type='login';
-        this.loaderService.showSnackBarWithMessageAndAction("Please Login to continue!","Ok");
+        this.loaderService.showSnackBarWithMessageAndAction("Please Login to continue!","🥺");
+      },
+      (error)=>{
+        console.log(error);
+        this.loaderService.showSnackBarWithMessageAndAction("SignUp Failed !","😑");
       }
     );
   }
@@ -43,13 +47,17 @@ export class LoginComponent implements OnInit {
       (data:any)=>{
         if(data.validation=='SUCCESS'){
           this.authService.setApiKey(data.userinfo.apiKey);
-          this.loaderService.showSnackBarWithMessageAndAction(`Welcome ${data.userinfo.uname}!!`,"Ok",);
+          this.loaderService.showSnackBarWithMessageAndAction(`Welcome ${data.userinfo.uname}!!`,"🤓",);
           this.authService.setUserInfo(data.userinfo);
           this.dialogRef.close();
         }else{
-          this.loaderService.showSnackBarWithMessageAndAction("Wrong Password!","Ok");
+          this.loaderService.showSnackBarWithMessageAndAction("Wrong Password!","🥺");
          // this.data.type='signup';
         }
+      },
+      (error)=>{
+        console.log(error);
+        this.loaderService.showSnackBarWithMessageAndAction("Login Failed !","😑");
       }
     );
   }

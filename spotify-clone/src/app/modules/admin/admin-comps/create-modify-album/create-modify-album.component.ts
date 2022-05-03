@@ -1,6 +1,9 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { userInfo } from 'os';
+import { UserInfo } from 'src/app/core/models/UserInfo';
+import { AuthService } from 'src/app/core/services/auth.service';
 import { DataService } from 'src/app/core/services/data.service';
 import { FileService } from 'src/app/core/services/file-upload.service';
 
@@ -21,12 +24,18 @@ export class CreateModifyAlbumComponent implements OnInit {
   selectedFiles: Array<File> = [];
   selFiles: any = null;
   currentAid: any;
+  userInfo:UserInfo|undefined|null;
   constructor(
     private fileUploadService: FileService,
-    private dataSevice: DataService
+    private dataSevice: DataService,
+    private authService:AuthService,
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.authService.$userInfo.subscribe((data:UserInfo|null|undefined)=>{
+      this.userInfo=data;
+    });
+  }
 
   fileSelectionChanged(event: Event) {
     this.selectedFiles = [];
@@ -88,9 +97,11 @@ export class CreateModifyAlbumComponent implements OnInit {
 
   createAlbum() {
     console.log(this.firstFormGroup.value);
+    let albumData=this.firstFormGroup.value;
+    albumData.uid=this.userInfo?.uid;
     if (this.firstFormGroup.valid)
       this.dataSevice
-        .post('album/create', this.firstFormGroup.value)
+        .post('album/create', albumData)
         .subscribe((res: any) => {
           this.currentAid = res?.albumId;
         });

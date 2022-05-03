@@ -90,6 +90,7 @@ export class PlayerService {
       this.audioObj.play();
 
       const handler = (event: Event) => {
+        this.updateStateEvents(event);
         observer.next(event);
       };
 

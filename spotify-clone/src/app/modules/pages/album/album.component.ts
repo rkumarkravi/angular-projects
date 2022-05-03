@@ -13,7 +13,7 @@ export class AlbumComponent implements OnInit {
   gridApi: any;
   playlist: any;
   playListName:string|undefined;
-  imgSrc: string ="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/e33c6e45362059.582ddfb485a00.png";
+  imgSrc: string ="assets/imgs/album-default.png";
   constructor(
     private activatedRoute: ActivatedRoute,
     private route: Router,
@@ -24,11 +24,13 @@ export class AlbumComponent implements OnInit {
     this.activatedRoute.queryParamMap.subscribe((x: any) => {
       console.log(x);
       if(x.params.type==='album'){
+        this.imgSrc=x.params.albumArt;
         this.getAllMusicOfAlbum(x.params.albumId);
+        this.playListName=x.params.albumName;
       }else{
         this.getAllMusicOfPlayList(x.params.pid);
+        this.playListName=x.params.name;
       }
-      this.playListName=x.params.name;
     });
   }
 

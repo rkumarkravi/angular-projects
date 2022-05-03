@@ -1,1 +1,5 @@
-<p>control works!</p>
+<h2>playing : {{currentSongPlaying | json}}</h2>
+{{state|json}}
+<button (click)="play()">play</button>
+<button (click)="pause()">pause</button>
+<button (click)="next()">next</button>

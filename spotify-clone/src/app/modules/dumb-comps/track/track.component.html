@@ -1,22 +1,22 @@
-<div class="image-title" *ngIf="type === 'image-title'" (click)="navigateWithParam('/album',album,'playlist')">
-  <div class="image-text">
+<div class="image-title" *ngIf="type === 'image-title'">
+  <div class="image-text" (click)="navigateWithParam('/album',album,'playlist')">
     <img src="{{ album && album.albumArt? album.albumArt:'assets/imgs/album-default.png' }}" alt="album art" />
     <h3>{{ album && album.name }}</h3>
   </div>
   <div style="position: relative; width: 0; height: 0">
-  <div class="play-button">
+  <div class="play-button" (click)="playSong(album)">
     <mat-icon>play_arrow</mat-icon>
   </div>
 </div>
 </div>
 
-<div class="big-image-title" *ngIf="type === 'big-image-title'" (click)="navigateWithParam('/album',album,'album')">
-  <div class="image-text">
+<div class="big-image-title" *ngIf="type === 'big-image-title'">
+  <div class="image-text" (click)="navigateWithParam('/album',album,'album')">
     <img src="{{ album.albumArt }}" alt="album art" />
     <h5>{{ album.albumName }}</h5>
   </div>
   <div style="position: relative; width: 0; height: 0">
-  <div class="play-button">
+  <div class="play-button" (click)="playSong(album)">
     <mat-icon>play_arrow</mat-icon>
   </div>
   </div>

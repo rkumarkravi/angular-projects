@@ -1,0 +1,7 @@
+export interface Album {
+  albumId: string;
+  albumName: string;
+  creatorName: string;
+  createdDate: Date;
+  albumArt: string;
+}

@@ -1,4 +1,12 @@
-<app-header-album-playlist [name]="playListName" [imgSrc]="imgSrc"></app-header-album-playlist>
-<div>
-  <app-create-playlist [showSearch]="false" [gridData]="playlist"></app-create-playlist>
+<div style="overflow-y: scroll; height: 90vh">
+  <app-header-album-playlist
+    [name]="playListName"
+    [imgSrc]="imgSrc"
+  ></app-header-album-playlist>
+  <div>
+    <app-create-playlist
+      [showSearch]="false"
+      [gridData]="playlist"
+    ></app-create-playlist>
+  </div>
 </div>

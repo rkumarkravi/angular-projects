@@ -25,23 +25,25 @@ import { UserService } from 'src/app/core/services/user.service';
   styleUrls: ['./create-playlist.component.scss'],
 })
 export class CreatePlaylistComponent implements OnInit {
-  @Input("showSearch") showSearch: boolean = true;
+  @Input('showSearch') showSearch: boolean = true;
   public searchMusicForm: FormGroup = new FormGroup({
     searchField: new FormControl(''),
   });
   public searchText: string = '';
-  @Input("gridData")
+  @Input('gridData')
   public searchData = <any>[];
   playlist = <any>[];
   userInfo: UserInfo | undefined | null;
-  @Input("gridCol")
+  @Input('gridCol')
   public columnDefs: ColDef[] = [
-    { field: 'musicName' },
+    { field: 'musicName',width:400 },
     { field: 'contentType' },
-    { field: 'createdDate' },{
+    { field: 'createdDate',width:300 },
+    {
       headerName: '',
       cellRenderer: LikeSongRendererComponent,
       cellRendererParams: { playlist: this.playlist },
+      width:100
     },
     {
       headerName: '',
@@ -53,7 +55,7 @@ export class CreatePlaylistComponent implements OnInit {
     editable: true,
     sortable: true,
     flex: 1,
-    minWidth: 100,
+    minWidth: 60,
   };
   gridColumnApi: any;
   gridApi: any;
@@ -63,7 +65,7 @@ export class CreatePlaylistComponent implements OnInit {
     private dataService: DataService,
     private authService: AuthService,
     private userService: UserService,
-    private loaderService:LoaderService
+    private loaderService: LoaderService
   ) {}
 
   ngOnInit() {
@@ -101,14 +103,20 @@ export class CreatePlaylistComponent implements OnInit {
 
   getPlayList() {
     setTimeout(() => {
-    this.userService.refreshPlayList(this.userInfo?.uid);
+      this.userService.refreshPlayList(this.userInfo?.uid);
     }, 1000);
   }
 }
 
 @Component({
   selector: 'add-to-fav-component',
-  template: `<button mat-icon-button aria-label="Like Song" (click)="addToPlayList()"><mat-icon style="color:red;">favorite</mat-icon></button>`,
+  template: `<button
+    mat-icon-button
+    aria-label="Like Song"
+    (click)="addToPlayList()"
+  >
+    <mat-icon style="color:#4caf50;">favorite</mat-icon>
+  </button>`,
 })
 export class LikeSongRendererComponent implements ICellRendererAngularComp {
   params: any = <any>{};
@@ -121,17 +129,25 @@ export class LikeSongRendererComponent implements ICellRendererAngularComp {
   }
 
   addToPlayList() {
-    let playListId=this.params.context.userInfo.playlists.filter((x:any)=>x.name=="Liked Songs")[0]?.pid;
+    let playListId = this.params.context.userInfo.playlists.filter(
+      (x: any) => x.name == 'Liked Songs'
+    )[0]?.pid;
     console.log(
       `Add to Liked Songs...${playListId} and music Info ${this.params.data.id}`
     );
-    this.params.context.dataService.post(`playlist/add`, {
-      mid: this.params.data.id,
-      pid: playListId,
-    }).subscribe((x: any) => {
-      console.log(x);
-      this.params.context.loaderService.showSnackBarWithMessageAndAction("Added to your liked songs!","Ok",1);
-    });
+    this.params.context.dataService
+      .post(`playlist/add`, {
+        mid: this.params.data.id,
+        pid: playListId,
+      })
+      .subscribe((x: any) => {
+        console.log(x);
+        this.params.context.loaderService.showSnackBarWithMessageAndAction(
+          'Added to your liked songs!',
+          'Ok',
+          1
+        );
+      });
   }
 }
 
@@ -185,7 +201,7 @@ export class ExtraMenuRendererComponent implements ICellRendererAngularComp {
           .post(`playlist/create`, {
             playlistName: data,
             userId: this.params.context.userInfo.uid,
-            mid:this.params.data.id,
+            mid: this.params.data.id,
           })
           .subscribe((x: any) => {
             console.log(x);
@@ -201,12 +217,14 @@ export class ExtraMenuRendererComponent implements ICellRendererAngularComp {
     console.log(
       `Add to Playlist...${playListId} and music Info ${this.params.data.id}`
     );
-    this.params.context.dataService.post(`playlist/add`, {
-      mid: this.params.data.id,
-      pid: playListId,
-    }).subscribe((x: any) => {
-      console.log(x);
-    });
+    this.params.context.dataService
+      .post(`playlist/add`, {
+        mid: this.params.data.id,
+        pid: playListId,
+      })
+      .subscribe((x: any) => {
+        console.log(x);
+      });
   }
 }
 

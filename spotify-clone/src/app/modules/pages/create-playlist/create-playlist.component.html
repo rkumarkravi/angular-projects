@@ -10,12 +10,11 @@
   </form>
   <div>
     <ag-grid-angular
-    style="width: 90%;
-    height: 400px;
-    margin-left: 5.4em;"
+    style="width: 100%;"
     class="ag-theme-balham-dark"
     [rowHeight]="50"
     [rowData]="searchData"
+    [domLayout]="'autoHeight'"
     [columnDefs]="columnDefs"
     (gridReady)="onGridReady($event)"
     [defaultColDef]="defaultColumnDef"

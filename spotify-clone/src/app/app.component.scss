@@ -1,5 +1,6 @@
 @import '../styles.scss';
 .main-app{
+  height: 86vh;
   // background-color:map-get($custom-colors, text) ;
   display: flex;
   .route-style{

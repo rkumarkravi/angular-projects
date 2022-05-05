@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ColDef, GridReadyEvent } from 'ag-grid-community';
 import { DataService } from 'src/app/core/services/data.service';
@@ -14,6 +14,7 @@ export class AlbumComponent implements OnInit {
   playlist: any;
   playListName:string|undefined;
   imgSrc: string ="assets/imgs/album-default.png";
+  @Input("otherStyle") otherStyle:string;
   constructor(
     private activatedRoute: ActivatedRoute,
     private route: Router,
@@ -27,6 +28,7 @@ export class AlbumComponent implements OnInit {
         this.imgSrc=x.params.albumArt;
         this.getAllMusicOfAlbum(x.params.albumId);
         this.playListName=x.params.albumName;
+        this.otherStyle=x.params.style;
       }else{
         this.getAllMusicOfPlayList(x.params.pid);
         this.playListName=x.params.name;

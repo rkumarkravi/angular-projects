@@ -25,6 +25,14 @@ export class ControlComponent implements OnInit {
     });
   }
 
+  formatLabel(value: number) {
+    if (value >= 1000) {
+      return Math.round(value / 1000);
+    }
+
+    return value;
+  }
+
   playStream(file: Track) {
     this.playerService.playStream(file).subscribe((events) => {
       //console.log(events)// listening for fun here
@@ -41,7 +49,11 @@ export class ControlComponent implements OnInit {
   }
 
   play() {
-    this.playerService.play();
+    if(!this.state.playing) {
+      this.playerService.play();
+    }else{
+      this.pause();
+    }
   }
 
   stop() {

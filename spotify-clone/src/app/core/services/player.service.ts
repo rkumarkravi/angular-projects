@@ -4,7 +4,8 @@ import { Album } from 'src/app/modules/admin/admin-comps/show-albums/show-albums
 import { urlConsts } from '../configs/url-consts';
 import { Track } from '../models/Track';
 import { DataService } from './data.service';
-import moment from 'moment';
+import * as moment from 'moment';
+import { Playlist } from '../models/Playlist';
 
 @Injectable({
   providedIn: 'root',
@@ -47,7 +48,10 @@ export class PlayerService {
     switch (event.type) {
       case 'canplay':
         this.state.duration = this.audioObj.duration;
-        this.state.readableDuration = this.formatTime(this.state.duration);
+        this.state.readableDuration = this.formatTime(
+          this.state.duration,
+          'mm:ss'
+        );
         this.state.canplay = true;
         break;
       case 'playing':
@@ -59,7 +63,8 @@ export class PlayerService {
       case 'timeupdate':
         this.state.currentTime = this.audioObj.currentTime;
         this.state.readableCurrentTime = this.formatTime(
-          this.state.currentTime
+          this.state.currentTime,
+          'mm:ss'
         );
         break;
       case 'error':
@@ -128,17 +133,8 @@ export class PlayerService {
   init(musicObj: Track) {
     this.currentSongObj.next(musicObj);
     if (musicObj) {
-      this.playStream(musicObj).subscribe((x)=>x);
+      this.playStream(musicObj).subscribe((x) => x);
     }
-  }
-
-  initAlbum(album: Album) {
-    this.getAllMusicOfAlbum(album.albumId);
-  }
-
-  playStream(track: Track) {
-    let url = urlConsts.baseurl + 'download/file/' + track.blobId;
-    return this.streamObservable(url).pipe(takeUntil(this.stop$));
   }
 
   play() {
@@ -162,9 +158,30 @@ export class PlayerService {
     return moment.utc(momentTime).format(format);
   }
 
+  initAlbum(album: Album) {
+    this.getAllMusicOfAlbum(album.albumId);
+  }
+
+  initPlayList(playlist: Playlist) {
+    this.getAllMusicOfPlaylist(playlist.pid);
+  }
+
+  playStream(track: Track) {
+    let url = urlConsts.baseurl + 'download/file/' + track.blobId;
+    return this.streamObservable(url).pipe(takeUntil(this.stop$));
+  }
+
   getAllMusicOfAlbum(id: string) {
     id &&
       this.dataService.get('album/getTacks/' + id).subscribe((data: any) => {
+        this.list = data;
+        if (this.list.length > 0) this.init(this.list[this.counter]);
+      });
+  }
+
+  getAllMusicOfPlaylist(id: string) {
+    id &&
+      this.dataService.get('playlist/getTacks/' + id).subscribe((data: any) => {
         this.list = data;
         if (this.list.length > 0) this.init(this.list[this.counter]);
       });

@@ -33,6 +33,8 @@ export class TrackComponent implements OnInit {
   playSong(album: any) {
     if (this.type == 'big-image-title') {
       this.playerService.initAlbum(album);
+    }else{
+      this.playerService.initPlayList(album);
     }
   }
 }

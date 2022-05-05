@@ -1,0 +1,24 @@
+.controls {
+  display: flex;
+  width: 90%;
+  align-items: center;
+  .album-details {
+    display: flex;
+    .album-title-desc {
+      margin-left: 1em;
+      width: 30em;
+    }
+  }
+  .player-control {
+    width: 40%;
+    .player-control-buttons {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .slider-style {
+      display: flex;
+      align-items: end;
+    }
+  }
+}

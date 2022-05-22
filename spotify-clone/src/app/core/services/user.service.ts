@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, shareReplay } from 'rxjs';
 import { Playlist } from '../models/Playlist';
 import { DataService } from './data.service';
 
@@ -12,7 +12,7 @@ constructor(private dataService:DataService) { }
 
 refreshPlayList(uid:number|undefined){
   if(uid)
-  this.dataService.get(`playlist/getAllPlayList/${uid}`).subscribe((data:any)=>{
+  this.dataService.get(`playlist/getAllPlayList/${uid}`).pipe(shareReplay()).subscribe((data:any)=>{
     this.$playlists.next(data);
   });
 }

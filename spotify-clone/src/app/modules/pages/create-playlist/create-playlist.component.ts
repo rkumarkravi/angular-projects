@@ -89,6 +89,7 @@ export class CreatePlaylistComponent implements OnInit {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
     this.gridApi.sizeColumnsToFit();
+    if(this.userInfo?.uid)
     this.getPlayList();
   }
 

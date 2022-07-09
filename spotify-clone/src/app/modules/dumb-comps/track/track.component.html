@@ -12,7 +12,7 @@
 
 <div class="big-image-title" *ngIf="type === 'big-image-title'">
   <div class="image-text" (click)="navigateWithParam('/album',album,'album')">
-    <img src="{{ album.albumArt }}" alt="album art" />
+    <img src="{{ album.albumArt?album.albumArt:'assets/imgs/album-art.png' }}" alt="album art" />
     <h5>{{ album.albumName }}</h5>
   </div>
   <div style="position: relative; width: 0; height: 0">

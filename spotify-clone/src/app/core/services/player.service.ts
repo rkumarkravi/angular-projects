@@ -63,8 +63,7 @@ export class PlayerService {
       case 'timeupdate':
         this.state.currentTime = this.audioObj.currentTime;
         this.state.readableCurrentTime = this.formatTime(
-          this.state.currentTime,
-          'mm:ss'
+          this.state.currentTime,"mm:ss"
         );
         break;
       case 'error':
@@ -149,7 +148,7 @@ export class PlayerService {
     this.stop$.next(1);
   }
 
-  seekTo(seconds: number) {
+  seekTo(seconds) {
     this.audioObj.currentTime = seconds;
   }
 
@@ -164,6 +163,14 @@ export class PlayerService {
 
   initPlayList(playlist: Playlist) {
     this.getAllMusicOfPlaylist(playlist.pid);
+  }
+
+  playWithAlbumId(albumId:string){
+    this.getAllMusicOfAlbum(albumId);
+  }
+
+  playWithPlaylistId(playid:string){
+    this.getAllMusicOfPlaylist(playid);
   }
 
   playStream(track: Track) {

@@ -8,6 +8,10 @@
       margin-left: 1em;
       width: 30em;
     }
+    .album-art {
+      width: 4em;
+      height: 4em;
+    }
   }
   .player-control {
     width: 40%;
@@ -21,4 +25,13 @@
       align-items: end;
     }
   }
+}
+
+:host {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: #2f2f2f;
+  padding: 0.5em;
+  z-index: 1;
 }

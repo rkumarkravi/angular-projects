@@ -17,7 +17,7 @@
     <mat-icon [matMenuTriggerFor]="vertebrates">arrow_drop_down</mat-icon>
     <mat-menu #vertebrates="matMenu">
       <button mat-menu-item>profile info</button>
-      <button mat-menu-item>logout</button>
+      <button mat-menu-item (click)="logout()">logout</button>
     </mat-menu>
   </div>
 </nav>

@@ -13,6 +13,8 @@ export class AlbumComponent implements OnInit {
   gridApi: any;
   playlist: any;
   playListName:string|undefined;
+  typeId:string;
+  type:string;
   imgSrc: string ="assets/imgs/album-default.png";
   @Input("otherStyle") otherStyle:string;
   constructor(
@@ -29,9 +31,13 @@ export class AlbumComponent implements OnInit {
         this.getAllMusicOfAlbum(x.params.albumId);
         this.playListName=x.params.albumName;
         this.otherStyle=x.params.style;
+        this.type='album';
+        this.typeId=x.params.albumId;
       }else{
         this.getAllMusicOfPlayList(x.params.pid);
         this.playListName=x.params.name;
+        this.type='playlist';
+        this.typeId=x.params.pid;
       }
     });
   }

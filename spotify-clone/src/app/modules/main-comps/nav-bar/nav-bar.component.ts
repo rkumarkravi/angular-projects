@@ -26,12 +26,11 @@ export class NavBarComponent implements OnInit {
   }
 
   openLoginSignup(authtype:string){
-    const ref:MatDialogRef<LoginComponent>=this.dialog.open(LoginComponent, {
-      width: '500px',
-      data: {type:authtype},
-    });
-    ref.afterClosed().subscribe(result=>{
-      console.log(result);
-    });
+    this.loginService.openLoginSignup(authtype);
+  }
+
+  logout(){
+    this.loginService.removeAll();
+    this.openLoginSignup('login');
   }
 }

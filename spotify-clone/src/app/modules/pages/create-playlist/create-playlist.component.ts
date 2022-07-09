@@ -18,6 +18,7 @@ import { AuthService } from 'src/app/core/services/auth.service';
 import { DataService } from 'src/app/core/services/data.service';
 import { LoaderService } from 'src/app/core/services/loader.service';
 import { UserService } from 'src/app/core/services/user.service';
+import { PlayerService } from 'src/app/core/services/player.service';
 
 @Component({
   selector: 'app-create-playlist',
@@ -29,6 +30,8 @@ export class CreatePlaylistComponent implements OnInit {
   public searchMusicForm: FormGroup = new FormGroup({
     searchField: new FormControl(''),
   });
+  @Input('TrackType') trackType:string="";
+  @Input('TrackId') trackId:string="";
   public searchText: string = '';
   @Input('gridData')
   public searchData = <any>[];
@@ -36,6 +39,11 @@ export class CreatePlaylistComponent implements OnInit {
   userInfo: UserInfo | undefined | null;
   @Input('gridCol')
   public columnDefs: ColDef[] = [
+    {
+      headerName: '',
+      cellRenderer: PlayButtonComponent,
+      width:100
+    },
     { field: 'musicName',width:400 },
     { field: 'contentType' },
     { field: 'createdDate',width:300 },
@@ -52,7 +60,7 @@ export class CreatePlaylistComponent implements OnInit {
     },
   ];
   public defaultColumnDef: ColDef = {
-    editable: true,
+    editable: false,
     sortable: true,
     flex: 1,
     minWidth: 60,
@@ -65,7 +73,8 @@ export class CreatePlaylistComponent implements OnInit {
     private dataService: DataService,
     private authService: AuthService,
     private userService: UserService,
-    private loaderService: LoaderService
+    private loaderService: LoaderService,
+    private playerService:PlayerService
   ) {}
 
   ngOnInit() {
@@ -149,6 +158,35 @@ export class LikeSongRendererComponent implements ICellRendererAngularComp {
           1
         );
       });
+  }
+}
+
+@Component({
+  selector: 'play-btn-component',
+  template: `<button
+    mat-icon-button
+    aria-label="Play Song"
+    (click)="playSong()"
+  >
+    <mat-icon style="color:#4caf50;">play_arrow</mat-icon>
+  </button>`,
+})
+export class PlayButtonComponent implements ICellRendererAngularComp {
+  params: any = <any>{};
+  constructor() {}
+  refresh(params: ICellRendererParams): boolean {
+    throw new Error('Method not implemented.');
+  }
+  agInit(params: ICellRendererParams): void {
+    this.params = params;
+  }
+
+  playSong() {
+    console.log(this.params.context)
+    if(this.params.context.playerService.trackType==='playlist')
+      this.params.context.playerService.playWithPlaylistId(this.params.context.trackId);
+    else
+    this.params.context.playerService.playWithAlbumId(this.params.context.trackId);
   }
 }
 

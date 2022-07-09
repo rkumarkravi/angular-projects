@@ -12,7 +12,7 @@ import { LoaderService } from '../services/loader.service';
 
 @Injectable()
 export class UserCheckInterceptor implements HttpInterceptor {
-  private userInfo: UserInfo | undefined;
+  private userInfo: UserInfo | any;
   constructor(public auth: AuthService, private loaderService: LoaderService) {
     this.auth.$userInfo.subscribe((data) => {
       if (data) this.userInfo = data;

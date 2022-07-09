@@ -1,7 +1,7 @@
 <!-- {{ state | json }} -->
-<section class="controls">
+<section class="controls" *ngIf="currentSongPlaying">
   <div class="album-details">
-    <img src="" alt="album-art" />
+    <img src="assets/imgs/album-art.png" alt="album-art" class="album-art"/>
     <div class="album-title-desc">
       <h3>{{currentSongPlaying?.musicName}}</h3>
       <h5>album description</h5>
@@ -24,11 +24,11 @@
       <h4>{{state.readableCurrentTime}}</h4>
       <mat-slider style="width: 100%;" color="primary" [disabled]="!state.canplay"
         [displayWith]="formatLabel"
-        step="0.00001"
-        min="0.000"
+        step="1"
+        min="0"
         [max]="state?.duration"
-        [(ngModel)]="state.currentTime"
-        (change)="onSliderChangeEnd($event)"
+        [value]="state?.currentTime"
+        (input)="onSliderChangeEnd($event)"
       ></mat-slider>
       <h4>{{state.readableDuration}}</h4>
     </div>

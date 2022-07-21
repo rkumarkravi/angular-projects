@@ -1,0 +1,23 @@
+<div class="user-dashboard">
+  <!-- <div class="side">
+    <mat-list>
+      <mat-list-item>Item 1</mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>Item 2</mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>Item 4</mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>Item 5</mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>Item 6</mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>Item 7</mat-list-item>
+    </mat-list>
+  </div> -->
+  <mat-card>
+  <mat-divider [vertical]="true"></mat-divider>
+  <div class="tiles">
+    <app-tile *ngFor="let item of tiles" [tile]="item" [routerLink]="item.route"></app-tile>
+  </div>
+</mat-card>
+</div>

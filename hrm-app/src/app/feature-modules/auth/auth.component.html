@@ -1,0 +1,77 @@
+<div class="login-page">
+  <h1 mat-dialog-title style="display: flex; align-items: center">
+  Login / Sign up &nbsp;<mat-icon>login</mat-icon>
+</h1>
+<div>
+  <section>
+    <form [formGroup]="loForm" *ngIf="data=='login'">
+      <mat-form-field appearance="fill" style="width: 100%">
+        <mat-label>Email</mat-label>
+        <input
+          matInput
+          placeholder="email"
+          formControlName="email"
+          type="email"
+        />
+      </mat-form-field>
+      <mat-form-field appearance="fill" style="width: 100%">
+        <mat-label>password</mat-label>
+        <input
+          matInput
+          placeholder="password"
+          formControlName="pass"
+          type="password"
+        />
+      </mat-form-field>
+      <button mat-flat-button color="primary" (click)="loginUser()">Login</button>
+    </form>
+
+    <form [formGroup]="loForm" *ngIf="data=='signup'" (ngSubmit)="createUser()">
+      <mat-form-field appearance="fill" style="width: 100%">
+        <mat-label>Name</mat-label>
+        <input
+          matInput
+          placeholder="name"
+          formControlName="uname"
+          type="text"
+        />
+      </mat-form-field><br>
+      <mat-form-field appearance="fill" style="width: 100%">
+        <mat-label>Email</mat-label>
+        <input
+          matInput
+          placeholder="email"
+          formControlName="email"
+          type="email"
+        />
+      </mat-form-field><br>
+      <mat-form-field appearance="fill" style="width: 100%">
+        <mat-label>password</mat-label>
+        <input
+          matInput
+          placeholder="password"
+          formControlName="pass"
+          type="password"
+        />
+      </mat-form-field><br>
+      <mat-form-field appearance="fill" style="width: 100%">
+        <mat-label>mobile</mat-label>
+        <input
+          matInput
+          placeholder="mobile"
+          formControlName="mobile"
+          type="tel"
+        />
+      </mat-form-field><br>
+      <button mat-flat-button color="primary">Sign up</button>
+    </form>
+  </section>
+  <br />
+  <h2 *ngIf="data=='signup'">
+    Already have an account ?<b style="color: #5465ff; cursor: pointer" (click)="data='login'"> Login</b>
+  </h2>
+  <h2 *ngIf="data=='login'">
+    Dont have a account ?<b style="color: #5465ff; cursor: pointer" (click)="data='signup'"> Sign up</b>
+  </h2>
+</div>
+</div>

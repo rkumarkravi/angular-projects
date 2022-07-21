@@ -1,0 +1,23 @@
+:host{
+  display: grid;
+  place-items: center;
+}
+.tiles{
+  width: 40%;
+  display: grid;
+  gap: 3em;
+  grid-template-columns: repeat(3, minmax(150px, 1fr));
+}
+.tile-style{
+  background-color: #aa879898;
+}
+
+.side{
+  width: 20%;
+  height: 10;
+}
+
+.user-dashboard{
+  width: 60%;
+  margin-top: 6em;
+}

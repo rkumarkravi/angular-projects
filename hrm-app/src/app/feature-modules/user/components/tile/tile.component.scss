@@ -1,0 +1,29 @@
+.tile-style {
+  height: 10em;
+  width: 11em;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-direction: column;
+  position: relative;
+  color: white;
+  border-radius: 5px;
+  font-weight: bold;
+  background-color: #5465ff;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.tile-style:hover .mat-icon{
+  font-size: 12em;
+  opacity: 0.3;
+}
+
+.mat-icon {
+  position: absolute;
+  top: 0;
+  left: 0px;
+  opacity: 0.2;
+  font-size: 14em;
+  transition: all 0.2s cubic-bezier(0.075, 0.82, 0.165, 1);
+}

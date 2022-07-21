@@ -1,0 +1,87 @@
+:host {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  gap: 1em;
+  // background-color: #bfd7ff;
+  height: 100%;
+}
+.todo-wrapper {
+  display: flex;
+  /* grid-template-columns: repeat(4, 1fr); */
+  /* grid-gap: 1em; */
+  gap: 1em;
+  border-radius: 0.5em;
+  color: white;
+  height: 100%;
+  /* grid-auto-flow: row dense; */
+  flex-flow: wrap;
+  width: 100%;
+  justify-content: space-around;
+}
+.todos:hover,
+.todos:active {
+  box-shadow: 0px 0px 11px 5px #5465ff;
+}
+.todos {
+  display: flex;
+  flex-direction: column;
+  padding: 1em;
+  border-radius: 0.5em;
+  background-color: #5465ff;
+  gap: 1em;
+  width: 20em;
+  height: 20em;
+  app-todo-node {
+    display: flex;
+    flex-direction: row;
+  }
+  .todo-name {
+    display: flex;
+    justify-content: space-between;
+  }
+  .todo-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    padding: 1em;
+    background-color: #788bff;
+    color: black;
+    height: 14em;
+    overflow-y: auto;
+  }
+}
+
+//scrollbar
+.todo-list::-webkit-scrollbar {
+  width: 0.5em;
+  background: aliceblue;
+}
+.todo-list::-webkit-scrollbar-thumb {
+  background: #bfd7ff;
+}
+
+.todo-name {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5em;
+  border-radius: 0.5em;
+  background-color: #788bff;
+  color: black;
+}
+.todo-fab-button{
+  position: absolute;
+    bottom: 10px;
+    right: 2em;
+}
+.background-image{
+  position: absolute;
+    right: 11px;
+    bottom: 0px;
+    height: 20em;
+    overflow: hidden;
+    z-index: -1;opacity: 0.2;
+    animation: back-anim 0.2s alternate;
+}

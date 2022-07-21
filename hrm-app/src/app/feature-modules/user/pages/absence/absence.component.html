@@ -1,0 +1,81 @@
+<mat-card style="height: min-content">
+  <h2>Add Absence</h2>
+  <form [formGroup]="absenceFormGroup" (ngSubmit)="addAbsence()">
+    <mat-form-field appearance="fill">
+      <mat-label>Absence Type</mat-label>
+      <mat-select formControlName="absenceType">
+        <mat-option *ngFor="let symbol of symbols" [value]="symbol">{{
+          symbol
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Choose a from date</mat-label>
+      <input
+        matInput
+        [matDatepicker]="pickerFrom"
+        [matDatepickerFilter]="myFilter"
+        formControlName="fromDate"
+      />
+      <mat-datepicker-toggle
+        matSuffix
+        [for]="pickerFrom"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #pickerFrom></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Choose a to date</mat-label>
+      <input
+        matInput
+        [matDatepicker]="pickerTo"
+        formControlName="toDate"
+        [matDatepickerFilter]="myFilter"
+      />
+      <mat-datepicker-toggle matSuffix [for]="pickerTo"></mat-datepicker-toggle>
+      <mat-datepicker #pickerTo></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Reason</mat-label>
+      <input matInput formControlName="reason" />
+    </mat-form-field>
+    <button mat-flat-button color="primary">Submit</button>
+  </form>
+</mat-card>
+<mat-list *ngIf="viewType === 'list'">
+  <mat-list-item *ngFor="let absence of absences">
+    <mat-card class="list-outer">
+      <mat-icon *ngIf="absence.type === 'ATTENDANCE'">apartment</mat-icon>
+      <mat-icon *ngIf="absence.type === 'SICK'">sick</mat-icon>
+      <mat-icon *ngIf="absence.type === 'EARNED'">payments</mat-icon>
+      <div>{{ absence.type }}</div>
+      <div>{{ absence.from }}</div>
+      <div>{{ absence.to }}</div>
+      <div class="delete-button"><mat-icon>delete</mat-icon></div>
+    </mat-card>
+  </mat-list-item>
+</mat-list>
+<mat-card class="inline-calender-card" *ngIf="viewType === 'grid'">
+  <mat-calendar [dateFilter]="allAttendance" [dateClass]="dateClass()" (selectedChange)="dateChange($event)"></mat-calendar>
+</mat-card>
+<div style="margin: 1em">
+  <mat-button-toggle-group
+    #group="matButtonToggleGroup"
+    [(ngModel)]="viewType"
+    (change)="onChangeViewType($event)"
+  >
+    <mat-button-toggle value="list" aria-label="Text align left">
+      <mat-icon>list</mat-icon>
+    </mat-button-toggle>
+    <mat-button-toggle value="grid" aria-label="Text align center">
+      <mat-icon>grid_view</mat-icon>
+    </mat-button-toggle>
+  </mat-button-toggle-group>
+</div>
+<div>
+  <img
+    src="assets/images/undraw_on_the_office_re_cxds.svg"
+    class="background-image"
+  />
+</div>

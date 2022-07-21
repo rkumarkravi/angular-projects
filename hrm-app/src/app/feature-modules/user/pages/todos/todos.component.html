@@ -1,0 +1,56 @@
+<div cdkDropListGroup class="todo-wrapper">
+  <div *ngFor="let todo of todos" class="todos" cdkDrag #element (cdkDragStarted)="movedOnDrag(element)" cdkDragBoundary=".todo-wrapper">
+    <div class="todo-name">
+      <div style="font-weight: bold">{{ todo.date|date }}</div>
+      <div>
+        <button
+          mat-icon-button
+          color="white"
+          aria-label="Example icon button with a heart icon"
+          (click)="openBottomSheet(todo)"
+          matTooltip="Click to Add new TO-DO note"
+        >
+          <mat-icon>add_circle</mat-icon>
+        </button>
+        <button
+          mat-icon-button
+          color="white"
+          aria-label="Example icon button with a heart icon"
+          (click)="deleteTodo(todo)"
+          matTooltip="Click to delete this TO-DO"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+    </div>
+    <div
+      cdkDropList
+      [id]="'' + todo?.id"
+      [cdkDropListData]="todo?.todoNotes"
+      (cdkDropListDropped)="drop($event)"
+      [cdkDropListConnectedTo]="myList"
+      class="todo-list"
+    >
+      <span *ngIf=" todo?.todoNotes && todo?.todoNotes.length === 0">No more todo's for today 😉!</span>
+      <app-todo-node
+        *ngFor="let item of todo?.todoNotes"
+        [todoNote]="item"
+        cdkDrag
+        [cdkDragDisabled]="item.completed"
+        matRipple [matRippleColor]="'#788bff82'"
+      >
+      <app-todo-node *cdkDragPreview [todoNote]="item"></app-todo-node>
+    </app-todo-node>
+    </div>
+  </div>
+</div>
+
+<button mat-fab color="primary" aria-label="Create new todo" matTooltip="Create new todo" (click)="createNewTodo()" class="todo-fab-button">
+  <mat-icon>add</mat-icon>
+</button>
+<div>
+  <img
+    src="assets/images/undraw_on_the_office_re_cxds.svg"
+    class="background-image"
+  />
+</div>

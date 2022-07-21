@@ -1,0 +1,58 @@
+:host {
+  display: flex;
+  justify-content: space-between;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 15em;
+  padding: 1em;
+}
+.mat-card {
+  width: 18em;
+  margin: 1em;
+}
+
+.mat-form-field {
+  width: 15em;
+}
+mat-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding-top: 2em;gap: 1em;
+}
+.list-outer {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+}
+.background-image{
+  position: absolute;
+    right: 11px;
+    bottom: 0px;
+    height: 20em;
+    overflow: hidden;
+    z-index: -1;opacity: 0.2;
+    animation: back-anim 0.2s alternate;
+}
+
+@keyframes back-anim {
+  from{
+    transform: translateX(0);
+  }
+  to{
+    transform: translateX(10);
+  }
+}
+
+.inline-calender-card{
+  width: 40%;
+}
+.special-date {
+  background-color: red;
+}
+.delete-button{
+  cursor: pointer;
+}

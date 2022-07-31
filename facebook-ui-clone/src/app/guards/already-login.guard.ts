@@ -6,7 +6,7 @@ import {
   RouterStateSnapshot,
   UrlTree,
 } from '@angular/router';
-import { map, Observable } from 'rxjs';
+import { map, Observable, catchError, of } from 'rxjs';
 import { CommonServService } from '../service/common-serv.service';
 
 @Injectable({
@@ -25,6 +25,7 @@ export class AlreadyLoginGuard implements CanActivate {
     if (this.commonServ.getJwt() == '') {
       return true;
     }
+    console.log("already login auth guard!");
     return this.commonServ.checkActiveOrNot().pipe(
       map((x: any) => {
         if (x['active'] == 'AVAILABLE') {

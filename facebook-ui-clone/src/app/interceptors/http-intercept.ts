@@ -5,12 +5,13 @@ import {
   HttpRequest,
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { catchError, Observable, of } from 'rxjs';
 import { CommonServService } from '../service/common-serv.service';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class HttpIntercept implements HttpInterceptor {
-  constructor(private service: CommonServService) {}
+  constructor(private service: CommonServService,private router:Router) {}
   intercept(
     req: HttpRequest<any>,
     next: HttpHandler

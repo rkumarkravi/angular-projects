@@ -22,6 +22,7 @@ export class LoginGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
+      console.log("login auth guard!");
     if (this.commonServ.getJwt() == '') {
       this.router.navigateByUrl('/login');
     }

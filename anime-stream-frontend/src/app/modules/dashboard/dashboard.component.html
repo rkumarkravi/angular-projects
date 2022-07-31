@@ -1,0 +1,19 @@
+<p
+  style="
+    margin: 1em;
+    color: white;
+    font-size: 3em;
+    font-weight: bold;
+    letter-spacing: 9px;
+    margin-left: 0.5em;
+  "
+>
+  Anime
+</p>
+<!-- <video src="http://localhost:8080/anime/api/v1/download/4" controlsList='nodownload' width="320" height="240" controls></video> -->
+<div class="dashboard-style">
+  <app-anime-card (click)="navigateToAnimeViewer(animeItem)"
+    *ngFor="let animeItem of allAnimes"
+    [animedata]="animeItem"
+  ></app-anime-card>
+</div>

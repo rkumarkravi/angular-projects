@@ -1,0 +1,31 @@
+.anime-card-style {
+  width: 16em;
+  height: 22.5em;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: rebeccapurple;
+  box-shadow: inset 0px 1px 20px 6px #1b1b1bfa;
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+  .anime-details {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    padding: 1em;
+    background-color: #18181830;
+    backdrop-filter: blur(5px);
+    .anime-name-style {
+      font-size: 1.5em;
+      color: white;
+      font-weight: bold;
+      text-shadow: 3px 3px 4px black;
+    }
+    .anime-info {
+      color: white;
+      text-shadow: 3px 3px 4px black;
+    }
+  }
+}

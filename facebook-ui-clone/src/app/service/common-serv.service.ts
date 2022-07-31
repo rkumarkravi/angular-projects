@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { catchError, Observable, of, Subject } from 'rxjs';
 import { urlConsts } from '../consts/url-consts';
 import { User } from '../main-timeline/models/models';
 
@@ -48,6 +48,14 @@ export class CommonServService {
       urlConsts.baseUrl + urlConsts.activeOrNot,
       {},
       { headers: headers, params: params }
-    );
+    ).pipe(catchError(
+      error=>{
+        console.log("error ",error);
+        if(error.status===403){
+          sessionStorage.clear();
+        }
+        return of({});
+      }
+    ));
   }
 }

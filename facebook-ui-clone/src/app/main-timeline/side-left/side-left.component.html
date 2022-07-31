@@ -1,5 +1,5 @@
 <mat-list role="list">
-  <mat-list-item role="listitem"
+  <mat-list-item role="listitem" (click)="callUserInfo()"
     ><div class="list-item-side">
       <mat-icon>account_circle</mat-icon>
       <span>{{ userData?.firstName + " " + userData?.lastName }}</span>

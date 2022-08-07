@@ -1,0 +1,9 @@
+<div class="video-collection" *ngIf="videos">
+<div *ngFor="let item of videos" class="video-style" (click)="playAnimeVideo(item?.videoBlobFile?.vbId)">
+  <img [src]="getImage(item.thumbnail.tblob)"/>
+  <div class="video-info">
+    {{item.totalTime}}
+  </div>
+  <mat-icon class="play-icon">play_arrow</mat-icon>
+</div>
+</div>

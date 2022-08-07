@@ -1,2 +1,30 @@
-<div class="viewer-style" [ngStyle]="{'background-image': 'url('+animeDetails?.animeThumbnail+')'}">
+<div *ngIf="!playTrailerVal"
+  class="viewer-style"
+  [ngStyle]="{
+    'background-image': 'url(' + animeDetails?.animeBackdrop + ')'
+  }"
+></div>
+<video autoplay [src]="playingSrc" *ngIf="playTrailerVal" controls controlsList='nodownload' preload="none">
+</video>
+<div class="anime-details" *ngIf="!playTrailerVal">
+  <div class="anime-name">{{ animeDetails?.name }}</div>
+  <div class="btns">
+    <button class="btn-style"(click)="playButton()">Play</button>
+    <button class="btn-style">+ My List</button>
+    <button class="btn-style" (click)="playVideo(animeDetails?.trailerLink)">Play Trailer</button>
+  </div>
+  <div class="anime-desc">{{animeDetails?.description}}</div>
+  <div class="anime-type">
+    <span>{{animeDetails?.animeType=='single'?'Movie':'Episodes'}}</span> |
+    <span>{{animeDetails?.dateOfRelease}}</span>
+  </div>
+  <div>
+    <app-videos-nav [videos]="animeDetails?.videos" (playVideoEvent)="playVideo($event)"></app-videos-nav>
+  </div>
 </div>
+<button *ngIf="!playTrailerVal" mat-fab matTooltip="back" aria-label="Example icon button with a heart icon" class="back-button" (click)="navigateBack()">
+  <mat-icon>arrow_back</mat-icon>
+</button>
+<button *ngIf="playTrailerVal" matTooltip="Close" mat-fab aria-label="Example icon button with a heart icon" class="close-button" (click)="playVideo(animeDetails?.trailerLink)">
+  <mat-icon>close</mat-icon>
+</button>

@@ -21,11 +21,19 @@
       font-size: 1.5em;
       color: white;
       font-weight: bold;
+      text-overflow: ellipsis;
       text-shadow: 3px 3px 4px black;
+      white-space: nowrap;
+      overflow: hidden;
+      width: 9em;
     }
     .anime-info {
       color: white;
       text-shadow: 3px 3px 4px black;
     }
   }
+}
+
+.anime-card-style:hover{
+  transform: scale(1.03);
 }

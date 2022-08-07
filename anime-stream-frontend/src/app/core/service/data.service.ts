@@ -11,7 +11,7 @@ export class DataService {
 constructor(private httpClient:HttpClient) { }
 
 get(path:string){
-  return this.httpClient.get(urlConsts.baseurl+path).pipe(shareReplay(1));
+  return this.httpClient.get(urlConsts.baseurl+path);
 }
 
 post(path:string,args:any={}){
@@ -32,7 +32,7 @@ genUrl(...paths: any[]){
 }
 
 getPage(path:string,pageNo:number,pageSize:number){
-  return this.httpClient.post(urlConsts.baseurl+path,{page:pageNo,size:pageSize}).pipe(shareReplay(1));
+  return this.httpClient.post(urlConsts.baseurl+path,{page:pageNo,size:pageSize});
 }
 
 }

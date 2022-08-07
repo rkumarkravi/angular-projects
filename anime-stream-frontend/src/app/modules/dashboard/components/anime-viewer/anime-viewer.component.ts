@@ -1,8 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Anime } from 'src/app/core/models/pageableContent';
 import { DataService } from './../../../../core/service/data.service';
 import { urlConsts } from './../../../../core/constants/urlConstants';
+import { VideosNavComponent } from '../videos-nav/videos-nav.component';
 
 @Component({
   selector: 'app-anime-viewer',
@@ -11,9 +12,13 @@ import { urlConsts } from './../../../../core/constants/urlConstants';
 })
 export class AnimeViewerComponent implements OnInit {
   animeDetails: Anime | null = null;
+  @ViewChild(VideosNavComponent) videosNavComp:VideosNavComponent | undefined;
+  playTrailerVal:Boolean=false;
+  playingSrc:String|null=null;
   constructor(
     private route: ActivatedRoute,
-    private dataService: DataService
+    private dataService: DataService,
+    private router:Router
   ) {}
   ngOnInit() {
     this.route.params.subscribe((s) => {
@@ -28,5 +33,29 @@ export class AnimeViewerComponent implements OnInit {
           }
         });
     });
+  }
+
+  navigateBack(){
+    this.playTrailerVal=false;
+    this.router.navigate(['']);
+  }
+
+  addToMyList(){
+  }
+
+  playButton(){
+    console.log(this.videosNavComp?.videos)
+    if(this.videosNavComp?.videos){
+      this.videosNavComp?.playAnimeVideo(this.videosNavComp?.videos[0].videoBlobFile?.vbId);
+    }
+  }
+
+  playVideo(src:any){
+    if(this.playTrailerVal)
+      this.playTrailerVal=false;
+    else{
+      this.playTrailerVal=true;
+      this.playingSrc=src;
+    }
   }
 }

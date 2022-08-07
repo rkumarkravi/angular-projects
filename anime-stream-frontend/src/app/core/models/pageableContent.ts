@@ -15,18 +15,21 @@ export interface PageableResponse {
 export interface Anime {
   animeType:      string;
   name:           string;
-  dateOfReleased: string;
+  dateOfRelease: string;
   credits:        string;
   description:    string;
-  animeThumbnail: string;
+  animeBackdrop: string;
+  poster: string;
+  origin_country: string;
   videos:         Video[];
   aid:            number;
+  trailerLink: string;
 }
 
 export interface Video {
   totalTime: string;
   title:     string;
-  videoBlob: VideoBlob;
+  videoBlobFile: VideoBlob;
   thumbnail: Thumbnail;
   vid:       number;
 }

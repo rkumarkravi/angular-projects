@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 })
 export class DashboardComponent implements OnInit {
   public allAnimes:Anime[]|null=null;
-  constructor(private dataService:DataService,private sanitizer: DomSanitizer,private router:Router) { }
+  constructor(private dataService:DataService,private router:Router) { }
   thumbnail:any;
   ngOnInit() {
     this.dataService.getPage(this.dataService.genUrl(urlConsts.getAllAnime),0,10).subscribe((data:any)=>{
@@ -22,12 +22,6 @@ export class DashboardComponent implements OnInit {
       // this.getImage(this.allAnimes[0].videos[0].thumbnail.tblob);
     });
   }
-
-  getImage(baseImage:any){
-    let objectURL = 'data:image/jpeg;base64,' + baseImage;
-    return this.sanitizer.bypassSecurityTrustUrl(objectURL);
-  }
-
   navigateToAnimeViewer(anime:Anime){
     this.router.navigate(['animeviewer',anime.aid],{skipLocationChange:true});
   }

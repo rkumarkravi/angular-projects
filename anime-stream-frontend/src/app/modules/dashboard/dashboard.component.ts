@@ -11,19 +11,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-  public allAnimes:Anime[]|null=null;
   constructor(private dataService:DataService,private router:Router) { }
-  thumbnail:any;
   ngOnInit() {
-    this.dataService.getPage(this.dataService.genUrl(urlConsts.getAllAnime),0,10).subscribe((data:any)=>{
-      let response:PageableResponse=data;
-      console.log(response.content);
-      this.allAnimes=response.content;
-      // this.getImage(this.allAnimes[0].videos[0].thumbnail.tblob);
-    });
-  }
-  navigateToAnimeViewer(anime:Anime){
-    this.router.navigate(['animeviewer',anime.aid],{skipLocationChange:true});
   }
 
 }

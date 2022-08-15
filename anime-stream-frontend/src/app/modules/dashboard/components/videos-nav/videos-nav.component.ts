@@ -11,6 +11,7 @@ import { urlConsts } from './../../../../core/constants/urlConstants';
 export class VideosNavComponent implements OnInit {
   @Input() videos: Video[] | undefined = [];
   @Output("playVideoEvent") playVideoEvent=new EventEmitter<string>();
+  urls:any=urlConsts;
   constructor(private sanitizer: DomSanitizer) {}
 
   ngOnInit() {}

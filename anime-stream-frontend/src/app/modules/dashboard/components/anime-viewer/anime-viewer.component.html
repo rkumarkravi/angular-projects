@@ -22,7 +22,7 @@
     <app-videos-nav [videos]="animeDetails?.videos" (playVideoEvent)="playVideo($event)"></app-videos-nav>
   </div>
 </div>
-<button *ngIf="!playTrailerVal" mat-fab matTooltip="back" aria-label="Example icon button with a heart icon" class="back-button" (click)="navigateBack()">
+<button *ngIf="!playTrailerVal" mat-fab matTooltip="back" aria-label="Example icon button with a heart icon" class="back-button" (click)="navigateBack()" color="primary">
   <mat-icon>arrow_back</mat-icon>
 </button>
 <button *ngIf="playTrailerVal" matTooltip="Close" mat-fab aria-label="Example icon button with a heart icon" class="close-button" (click)="playVideo(animeDetails?.trailerLink)">

@@ -4,7 +4,7 @@ export const urlConsts = {
   getAnime:'anime/get',
   getAllAnime:'anime/getAll',
   downloadVideo:'download/',
-  downloadFromRes:'downloadFromRes/',
-  downloadThumbFromRes:'downloadThumbnail/',
+  downloadFromRes:'fromRes/',
+  downloadThumbFromRes:'thumbnail/',
   login:'/login'
 };

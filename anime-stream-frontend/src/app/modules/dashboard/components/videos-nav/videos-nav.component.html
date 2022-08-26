@@ -1,6 +1,6 @@
 <div class="video-collection" *ngIf="videos">
 <div *ngFor="let item of videos" class="video-style" (click)="playAnimeVideo(item?.videoBlobFile?.vbId)">
-  <img [src]="urls.baseurl+urls.downloadThumbFromRes+item.thumbnail.tid"/>
+  <img [src]="urls.baseurl+'download/'+urls.downloadThumbFromRes+item.thumbnail.tid"/>
   <div class="video-info">
     {{item.totalTime}}
   </div>

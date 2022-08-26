@@ -22,6 +22,6 @@ export class VideosNavComponent implements OnInit {
   }
 
   playAnimeVideo(videoBlobId:any){
-    this.playVideoEvent.emit(urlConsts.baseurl+urlConsts.downloadFromRes+videoBlobId);
+    this.playVideoEvent.emit(urlConsts.baseurl+urlConsts.downloadVideo+urlConsts.downloadFromRes+videoBlobId);
   }
 }

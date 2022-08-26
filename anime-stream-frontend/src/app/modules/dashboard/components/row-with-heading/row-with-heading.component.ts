@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { urlConsts } from 'src/app/core/constants/urlConstants';
 import { Anime, PageableResponse } from 'src/app/core/models/pageableContent';
 import { DataService } from 'src/app/core/service/data.service';
@@ -12,7 +12,7 @@ import { DataService } from 'src/app/core/service/data.service';
 export class RowWithHeadingComponent implements OnInit {
   public allAnimes:Anime[]|null=null;
   @Input("groupName") groupName:string|undefined;
-  constructor(private dataService:DataService,private router:Router) { }
+  constructor(private dataService:DataService,private router:Router,private route:ActivatedRoute) { }
   thumbnail:any;
   ngOnInit() {
     this.dataService.getPage(this.dataService.genUrl(urlConsts.getAllAnime),0,10).subscribe((data:any)=>{
@@ -23,6 +23,6 @@ export class RowWithHeadingComponent implements OnInit {
     });
   }
   navigateToAnimeViewer(anime:Anime){
-    this.router.navigate(['animeviewer',anime.aid],{skipLocationChange:true});
+    this.router.navigate(['animeviewer',anime.aid],{skipLocationChange:true,relativeTo:this.route});
   }
 }

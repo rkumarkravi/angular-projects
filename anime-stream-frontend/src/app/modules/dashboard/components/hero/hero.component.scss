@@ -1,0 +1,25 @@
+.hero-wrapper{
+  position: relative;
+  .hero-image{
+    width: 100vw;
+    height: 100vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  .shadow-below{
+    box-shadow: -1px -20px 20px 100px #282828;
+  }
+  .hero-details{
+    width: 50vw;
+    height: 10em;
+    position: absolute;
+    top: 15em;
+    color:white;
+    padding: 1em;
+    .anime-name{
+      font-size: 5em;
+      font-weight: bolder;
+    }
+  }
+}

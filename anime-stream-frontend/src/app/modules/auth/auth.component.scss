@@ -1,0 +1,15 @@
+.form-wrapper {
+  .center-form {
+    display: grid;
+    place-items: center;
+    place-self: center;
+    height: 100vh;
+    mat-card {
+      width: 50%;
+      .login-form {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+  }
+}

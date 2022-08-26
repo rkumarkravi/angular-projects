@@ -37,7 +37,7 @@ export class AnimeViewerComponent implements OnInit {
 
   navigateBack(){
     this.playTrailerVal=false;
-    this.router.navigate(['']);
+    this.router.navigate(['dashboard']);
   }
 
   addToMyList(){

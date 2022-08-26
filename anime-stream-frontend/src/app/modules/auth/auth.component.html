@@ -1,0 +1,23 @@
+<div class="form-wrapper">
+  <div class="center-form">
+    <mat-card>
+      <form class="login-form" [formGroup]="signinFormGroup" (ngSubmit)="signIn()">
+        <h2>Login</h2>
+        <mat-form-field appearance="fill">
+          <mat-label>Email</mat-label>
+          <input matInput type="email" placeholder="Email" formControlName="username"/>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Password</mat-label>
+          <input matInput type="password" placeholder="password" formControlName="password"/>
+        </mat-form-field>
+        <button mat-raised-button color="primary" type="submit">Sign in</button>
+      </form>
+      <div style="margin-top: 10px">
+        <mat-divider></mat-divider><br>
+        <h3>Dont have an account ? <b style="color: lightgreen;">Sign up</b></h3>
+      </div>
+    </mat-card>
+  </div>
+</div>

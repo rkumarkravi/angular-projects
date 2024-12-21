@@ -9,6 +9,7 @@ import { CommonServService } from './service/common-serv.service';
 import { ErrorPageComponent } from './error-page/error-page.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpIntercept } from './interceptors/http-intercept';
+import { StoreModule } from '@ngrx/store';
 @NgModule({
   declarations: [AppComponent, ErrorPageComponent],
   imports: [
@@ -17,6 +18,7 @@ import { HttpIntercept } from './interceptors/http-intercept';
     BrowserAnimationsModule,
     MaterialModule,
     HttpClientModule,
+    StoreModule.forRoot({}, {}),
   ],
   providers: [
     CommonServService,
